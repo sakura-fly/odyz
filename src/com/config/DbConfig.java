@@ -6,7 +6,6 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -18,7 +17,7 @@ import com.util.DbConstanst;
 public class DbConfig {
 
 	@Bean
-	public BasicDataSource dataSource() {
+	public DataSource dataSource() {
 
 		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName(DbConstanst.DBDRIVER);
