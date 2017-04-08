@@ -9,7 +9,7 @@ import com.odyz.model.AdminModel;
  * @author Administrator
  *
  */
-public interface AdminRepositoyr extends JpaRepository<AdminModel, Long>{
+public interface AdminRepository extends JpaRepository<AdminModel, Long>{
 	/**
 	 * 用于登录，根据用户名和密码进行查询，如果能够得到管理员对象，测说明用户名密码正确，登陆成功
 	 * @param uname	用户名

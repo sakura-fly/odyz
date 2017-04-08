@@ -11,7 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.odyz.dao.AdminRepositoyr;
+import com.odyz.dao.AdminRepository;
 import com.odyz.model.AdminModel;
 
 
@@ -28,7 +28,7 @@ import com.odyz.model.AdminModel;
 public class AdminController {
 
 	@Autowired
-	AdminRepositoyr ar;
+	AdminRepository ar;
 	
 	/**
 	 * 登录
