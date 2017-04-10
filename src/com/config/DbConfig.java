@@ -6,10 +6,10 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.orm.jpa.vendor.EclipseLinkJpaVendorAdapter;
 
 import com.util.DbConstanst;
 
@@ -18,7 +18,7 @@ import com.util.DbConstanst;
 public class DbConfig {
 
 	@Bean
-	public BasicDataSource dataSource() {
+	public DataSource dataSource() {
 
 		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName(DbConstanst.DBDRIVER);
@@ -29,8 +29,8 @@ public class DbConfig {
 	}
 
 	@Bean
-	public HibernateJpaVendorAdapter jpaVendorAdapter() {
-		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+	public JpaVendorAdapter jpaVendorAdapter() {
+		EclipseLinkJpaVendorAdapter adapter = new EclipseLinkJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
 		adapter.setShowSql(false);
 		adapter.setGenerateDdl(true);
@@ -39,7 +39,7 @@ public class DbConfig {
 
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource datasource,
-			HibernateJpaVendorAdapter va) {
+			JpaVendorAdapter va) {
 		LocalContainerEntityManagerFactoryBean embf = new LocalContainerEntityManagerFactoryBean();
 		embf.setPersistenceUnitName("odyz");
 		embf.setJpaVendorAdapter(va);
