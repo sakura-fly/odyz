@@ -6,6 +6,7 @@ import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
@@ -45,6 +46,7 @@ public class DbConfig {
 		embf.setJpaVendorAdapter(va);
 		embf.setDataSource(datasource);
 		embf.setPackagesToScan("com.odyz.model");
+		embf.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());  
 		return embf;
 	}
 }
