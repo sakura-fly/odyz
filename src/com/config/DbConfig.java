@@ -5,6 +5,7 @@ import javax.sql.DataSource;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -16,6 +17,7 @@ import com.util.DbConstanst;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.odyz.dao")
+@EnableLoadTimeWeaving  
 public class DbConfig {
 
 	@Bean
@@ -46,7 +48,7 @@ public class DbConfig {
 		embf.setJpaVendorAdapter(va);
 		embf.setDataSource(datasource);
 		embf.setPackagesToScan("com.odyz.model");
-		embf.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());  
+//		embf.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());  
 		return embf;
 	}
 }

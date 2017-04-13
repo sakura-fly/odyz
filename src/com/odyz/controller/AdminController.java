@@ -4,6 +4,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.io.PrintWriter;
 
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
@@ -27,7 +30,8 @@ import com.odyz.model.AdminModel;
 @RequestMapping(value = "/admin")
 public class AdminController {
 
-	@Autowired
+//	@Autowired
+	@PersistenceContext
 	AdminRepository ar;
 	
 	/**

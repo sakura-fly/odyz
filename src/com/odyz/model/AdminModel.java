@@ -15,9 +15,14 @@ import com.sun.istack.internal.NotNull;
 @Entity
 @Table(name="admin")
 public class AdminModel {
+	
+	public AdminModel() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Id
 	@GeneratedValue
-	private long id;
+	private int id;
 	
 	/**
 	 * 用户名
@@ -34,11 +39,11 @@ public class AdminModel {
 	@Size(min=6,max=12)
 	private String pwd;
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
