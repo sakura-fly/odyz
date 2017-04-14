@@ -15,6 +15,8 @@ import com.config.DbConfig;
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 
+import net.sf.json.JSONObject;
+
 
 
 /**
@@ -47,7 +49,16 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/login", method = POST)
 	public void lgoin(@Validated AdminModel u, Errors e, PrintWriter out) {
-		System.out.println(ad.login(u));
+		AdminModel admin = ad.login(u);
+		JSONObject res = new JSONObject();
+		if(admin == null){
+			res.put("stat", -1);
+			res.put("msg", "defeated");
+		} else {
+			res.put("stat", 1);
+			res.put("msg", "succeed");
+		}
+		out.print(res.toString());
 	}
 
 	/**
