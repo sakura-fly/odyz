@@ -6,12 +6,10 @@ import java.io.PrintWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.config.DbConfig;
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.resfmt.DefRes;

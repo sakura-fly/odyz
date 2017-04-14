@@ -1,16 +1,16 @@
 package com.odyz.dao.impl;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
 import org.springframework.jdbc.core.JdbcOperations;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
+import com.odyz.model.ReportModel;
 import com.odyz.rowmapp.AdminRowMapper;
 import com.util.Sql;
 
@@ -53,6 +53,19 @@ public class AdminDaoImpl implements AdminDao {
 		int res = -1;
 		try {
 			res = jdbcOp.update(Sql.ADMIN_CLOSESAY, uid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+	@Override
+	public List<ReportModel> reportList(int pageNum, int pageSize) {
+		List<ReportModel> res = new ArrayList<>();
+		try {
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

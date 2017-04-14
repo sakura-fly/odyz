@@ -1,6 +1,9 @@
 package com.odyz.dao;
 
+import java.util.List;
+
 import com.odyz.model.AdminModel;
+import com.odyz.model.ReportModel;
 
 /**
  * 管理员DAO接口
@@ -27,4 +30,13 @@ public interface AdminDao {
 	 * @return
 	 */
 	public int closeSay(long uid);
+	
+	/**
+	 * 
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 */
+	public List<ReportModel> reportList(int pageNum, int pageSize);
+	
 }

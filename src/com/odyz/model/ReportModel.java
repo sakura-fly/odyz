@@ -1,6 +1,7 @@
 package com.odyz.model;
 
-import javax.xml.crypto.Data;
+import java.sql.Date;
+
 
 /**
  * 举报信息
@@ -9,6 +10,15 @@ import javax.xml.crypto.Data;
  *
  */
 public class ReportModel {
+	
+	public ReportModel(int id, int userid, int tipid, String tipMessage, int tipStatus, Date date) {
+		this.id = id;
+		this.userId = userid;
+		this.tipId = tipid;
+		this.tipMessage = tipMessage;
+		this.tipStatus = tipStatus;
+		this.tipTime = date;
+	}
 
 	
 	/**
@@ -35,7 +45,7 @@ public class ReportModel {
 	/**
 	 * 举报时间
 	 */
-	private Data tipTime;
+	private Date tipTime;
 
 	public int getId() {
 		return id;
@@ -77,11 +87,11 @@ public class ReportModel {
 		this.tipStatus = tipStatus;
 	}
 
-	public Data getTipTime() {
+	public Date getTipTime() {
 		return tipTime;
 	}
 
-	public void setTipTime(Data tipTime) {
+	public void setTipTime(Date tipTime) {
 		this.tipTime = tipTime;
 	}
 
