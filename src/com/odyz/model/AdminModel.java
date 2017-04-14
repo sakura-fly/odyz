@@ -7,18 +7,26 @@ import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 import com.sun.istack.internal.NotNull;
+
+import net.sf.json.JSONObject;
 /**
  * 管理员
  * @author Administrator
  *
  */
-@Entity
-@Table(name="admin")
+//@Entity
+//@Table(name="admin")
 public class AdminModel {
 	
 	public AdminModel() {
 		// TODO Auto-generated constructor stub
 		super();
+	}
+	
+	public AdminModel(int id, String userName,String pwd){
+		this.id = id;
+		this.userName = userName;
+		this.pwd = pwd;
 	}
 	
 	@Id
@@ -63,4 +71,15 @@ public class AdminModel {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+	
+	@Override
+	public String toString() {
+		JSONObject adminj = new JSONObject();
+		adminj.put("id", this.id);
+		adminj.put("userName", this.userName);
+		adminj.put("pwd", this.pwd);
+		return adminj.toString();
+	}
+	
+	
 }
