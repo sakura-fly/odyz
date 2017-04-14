@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.config.DbConfig;
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
+import com.resfmt.DefRes;
 
 import net.sf.json.JSONObject;
 
@@ -50,15 +51,11 @@ public class AdminController {
 	@RequestMapping(value = "/login", method = POST)
 	public void lgoin(@Validated AdminModel u, Errors e, PrintWriter out) {
 		AdminModel admin = ad.login(u);
-		JSONObject res = new JSONObject();
 		if(admin == null){
-			res.put("stat", -1);
-			res.put("msg", "defeated");
+			out.print(DefRes.dr(-1, "defeated"));
 		} else {
-			res.put("stat", 1);
-			res.put("msg", "succeed");
+			out.print(DefRes.dr(1, "succeed"));
 		}
-		out.print(res.toString());
 	}
 
 	/**
@@ -70,7 +67,12 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/closeuser", method = POST)
 	public void closeuser(long uid, long aid, int lv, PrintWriter out) {
-//		ar.sa
+		int res = ad.closeUser(uid);
+		if(res>0){
+			out.print(DefRes.dr(res, "succeed"));
+		} else {
+			out.print(DefRes.dr(res, "defeated"));
+		}
 	}
 	
 	/**
@@ -81,7 +83,12 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/closesay", method = POST)
 	public void closesay(long uid, long aid,  PrintWriter out) {
-
+		int res = ad.closeSay(uid);
+		if(res>0){
+			out.print(DefRes.dr(res, "succeed"));
+		} else {
+			out.print(DefRes.dr(res, "defeated"));
+		}
 	}
 	
 	/**
