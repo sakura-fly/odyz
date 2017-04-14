@@ -5,14 +5,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import java.io.PrintWriter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.odyz.dao.AdminRepository;
+import com.config.DbConfig;
+import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
+import com.resfmt.DefRes;
+
+import net.sf.json.JSONObject;
+
 
 
 /**
@@ -22,13 +27,19 @@ import com.odyz.model.AdminModel;
  *
  */
 
-
+//@ContextConfiguration(classes = DbConfig.class)
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
+	
+	
 
 	@Autowired
-	AdminRepository ar;
+	AdminDao ad;
+	
+//	@Autowired
+//	@PersistenceContext
+//	AdminRepository ar;
 	
 	/**
 	 * 登录
@@ -39,7 +50,12 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/login", method = POST)
 	public void lgoin(@Validated AdminModel u, Errors e, PrintWriter out) {
-		System.out.println(ar.exists(Example.of(u)));
+		AdminModel admin = ad.login(u);
+		if(admin == null){
+			out.print(DefRes.dr(-1, "defeated"));
+		} else {
+			out.print(DefRes.dr(1, "succeed"));
+		}
 	}
 
 	/**
@@ -51,7 +67,12 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/closeuser", method = POST)
 	public void closeuser(long uid, long aid, int lv, PrintWriter out) {
-//		ar.sa
+		int res = ad.closeUser(uid);
+		if(res>0){
+			out.print(DefRes.dr(res, "succeed"));
+		} else {
+			out.print(DefRes.dr(res, "defeated"));
+		}
 	}
 	
 	/**
@@ -62,7 +83,12 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/closesay", method = POST)
 	public void closesay(long uid, long aid,  PrintWriter out) {
-
+		int res = ad.closeSay(uid);
+		if(res>0){
+			out.print(DefRes.dr(res, "succeed"));
+		} else {
+			out.print(DefRes.dr(res, "defeated"));
+		}
 	}
 	
 	/**

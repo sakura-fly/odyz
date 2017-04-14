@@ -1,10 +1,5 @@
 package com.odyz.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.crypto.Data;
 
 /**
@@ -13,15 +8,12 @@ import javax.xml.crypto.Data;
  * @author Administrator
  *
  */
-@Entity
 public class ReportModel {
 
 	
 	/**
 	 * ID
 	 */
-	@Id
-	@GeneratedValue
 	private int id;
 	/**
 	 * 举报用户ID
@@ -43,7 +35,6 @@ public class ReportModel {
 	/**
 	 * 举报时间
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
 	private Data tipTime;
 
 	public int getId() {
