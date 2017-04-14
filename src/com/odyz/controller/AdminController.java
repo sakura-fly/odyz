@@ -16,7 +16,6 @@ import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.resfmt.DefRes;
 
-import net.sf.json.JSONObject;
 
 
 
@@ -37,9 +36,6 @@ public class AdminController {
 	@Autowired
 	AdminDao ad;
 	
-//	@Autowired
-//	@PersistenceContext
-//	AdminRepository ar;
 	
 	/**
 	 * 登录
