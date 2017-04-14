@@ -4,17 +4,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.io.PrintWriter;
 
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.odyz.dao.AdminRepository;
 import com.odyz.model.AdminModel;
 
 
@@ -31,8 +25,8 @@ import com.odyz.model.AdminModel;
 public class AdminController {
 
 //	@Autowired
-	@PersistenceContext
-	AdminRepository ar;
+//	@PersistenceContext
+//	AdminRepository ar;
 	
 	/**
 	 * 登录
@@ -43,7 +37,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/login", method = POST)
 	public void lgoin(@Validated AdminModel u, Errors e, PrintWriter out) {
-		System.out.println(ar.exists(Example.of(u)));
+//		System.out.println(ar.exists(Example.of(u)));
 	}
 
 	/**

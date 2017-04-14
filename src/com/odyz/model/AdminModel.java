@@ -18,6 +18,7 @@ public class AdminModel {
 	
 	public AdminModel() {
 		// TODO Auto-generated constructor stub
+		super();
 	}
 	
 	@Id
