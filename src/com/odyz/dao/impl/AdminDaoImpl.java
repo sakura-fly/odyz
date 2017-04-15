@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.odyz.model.ReportModel;
+import com.odyz.model.StuValidate;
 import com.odyz.rowmapp.AdminRowMapper;
 import com.odyz.rowmapp.ReportRowMapper;
+import com.odyz.rowmapp.StudentRowMapper;
 import com.util.Sql;
 
 @Repository
@@ -67,7 +69,6 @@ public class AdminDaoImpl implements AdminDao {
 		List<ReportModel> res = new ArrayList<>();
 		try {
 			res = jdbcOp.query(Sql.ADMIN_REPORT_LIST, new Object[]{skip,limit}, new ReportRowMapper());
-//			res = jdbcOp.queryForList(Sql.ADMIN_REPORT_LIST,skip,limit);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,6 +82,19 @@ public class AdminDaoImpl implements AdminDao {
 		int res = -1;
 		try {
 			res = jdbcOp.update(Sql.ADMIN_REPORT_DO,id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+	@Override
+	public List<StuValidate> studentList(int skip, int limit) {
+		List<StuValidate> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.ADMIN_STU_LIST, new Object[]{skip,limit}, new StudentRowMapper());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

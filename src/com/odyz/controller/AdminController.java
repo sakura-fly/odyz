@@ -121,7 +121,7 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/stulist", method = POST)
 	public void studentsList(@RequestParam(defaultValue="1") int pagenum ,@RequestParam(defaultValue="5") int pagesize,  PrintWriter out) {
-		out.print(ad.reportList((pagenum - 1) * pagesize, pagesize));
+		out.print(ad.studentList((pagenum - 1) * pagesize, pagesize));
 	}
 	
 	

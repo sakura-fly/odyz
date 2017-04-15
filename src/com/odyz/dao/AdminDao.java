@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.odyz.model.AdminModel;
 import com.odyz.model.ReportModel;
+import com.odyz.model.StuValidate;
 
 /**
  * 管理员DAO接口
@@ -34,10 +35,10 @@ public interface AdminDao {
 	/**
 	 * 查询举报信息列表 
 	 * @param skip	跳过条数
-	 * @param limlt	查询条数
+	 * @param limit	查询条数
 	 * @return
 	 */
-	public List<ReportModel> reportList(int skip, int limlt);
+	public List<ReportModel> reportList(int skip, int limit);
 	
 	/**
 	 * 处理举报信息
@@ -45,6 +46,14 @@ public interface AdminDao {
 	 * @return
 	 */
 	public int reportRes(int id);
+	
+	/**
+	 * 获取学生认证信息列表
+	 * @param skip	跳过条数
+	 * @param limit	查询条数
+	 * @return
+	 */
+	public List<StuValidate> studentList(int skip,int limit);
 	
 	
 	
