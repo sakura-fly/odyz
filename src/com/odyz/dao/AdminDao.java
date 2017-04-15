@@ -55,6 +55,14 @@ public interface AdminDao {
 	 */
 	public List<StuValidate> studentList(int skip,int limit);
 	
+	/**
+	 * 处理认证
+	 * @param snum	编号
+	 * @param res	结果
+	 * @return
+	 */
+	public int stuDo(int snum,int res);
+	
 	
 	
 }

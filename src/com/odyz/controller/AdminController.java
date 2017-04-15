@@ -124,5 +124,20 @@ public class AdminController {
 		out.print(ad.studentList((pagenum - 1) * pagesize, pagesize));
 	}
 	
+	/**
+	 * 处理学生认证
+	 * @param snum	认证编号
+	 * @param res	结果
+	 * @param out
+	 */
+	@RequestMapping(value = "/studo", method = POST)
+	public void doStu(int snum,int res,PrintWriter out){
+		int r = ad.stuDo(snum, res);
+		if(r < 0){
+			out.print(DefRes.dr(r, "defeated"));
+		} else {
+			out.print(DefRes.dr(r, "succeed"));
+		}
+	}
 	
 }

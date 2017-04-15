@@ -101,4 +101,17 @@ public class AdminDaoImpl implements AdminDao {
 		return res;
 	}
 
+
+
+	@Override
+	public int stuDo(int snum, int dores) {
+		int res = -1;
+		try {
+			res = jdbcOp.update(Sql.ADMIN_STU_DO,dores,snum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }
