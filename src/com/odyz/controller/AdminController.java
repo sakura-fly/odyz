@@ -96,4 +96,33 @@ public class AdminController {
 	public void reportlist(@RequestParam(defaultValue="1") int pagenum ,@RequestParam(defaultValue="5") int pagesize,  PrintWriter out) {
 		out.print(ad.reportList((pagenum - 1) * pagesize, pagesize));
 	}
+	
+	/**
+	 * 处理举报结果
+	 * @param id	举报信息的id
+	 * @param uid	管理员id
+	 */
+	@RequestMapping(value="/reportres" ,method=POST)
+	public void doReport(int id, int uid,PrintWriter out){
+		int res = ad.reportRes(id);
+		if(res < 0){
+			out.print(DefRes.dr(res, "defeated"));
+		} else {
+			out.print(DefRes.dr(res, "succeed"));
+		}
+	}
+	
+	
+	/**
+	 * 获取学生认证信息列表
+	 * @param pagenum
+	 * @param pagesize
+	 * @param out
+	 */
+	@RequestMapping(value = "/stulist", method = POST)
+	public void studentsList(@RequestParam(defaultValue="1") int pagenum ,@RequestParam(defaultValue="5") int pagesize,  PrintWriter out) {
+		out.print(ad.reportList((pagenum - 1) * pagesize, pagesize));
+	}
+	
+	
 }

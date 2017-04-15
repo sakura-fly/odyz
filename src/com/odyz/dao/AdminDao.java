@@ -32,11 +32,20 @@ public interface AdminDao {
 	public int closeSay(long uid);
 	
 	/**
-	 * 
-	 * @param pageNum
-	 * @param pageSize
+	 * 查询举报信息列表 
+	 * @param skip	跳过条数
+	 * @param limlt	查询条数
 	 * @return
 	 */
-	public List<ReportModel> reportList(int pageNum, int pageSize);
+	public List<ReportModel> reportList(int skip, int limlt);
+	
+	/**
+	 * 处理举报信息
+	 * @param id	举报信息ID
+	 * @return
+	 */
+	public int reportRes(int id);
+	
+	
 	
 }

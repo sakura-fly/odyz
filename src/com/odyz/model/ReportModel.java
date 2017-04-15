@@ -21,7 +21,7 @@ public class ReportModel {
 		this.tipStatus = tipStatus;
 		this.tipName= tipName;
 		this.userName = userName;
-		
+		this.tipTime = date;
 	}
 
 	
@@ -109,12 +109,12 @@ public class ReportModel {
 		JSONObject r = new JSONObject();
 		r.put("id", this.id);
 		r.put("tipmessage", this.tipMessage);
-		r.put("tiptime", this.tipTime);
+		r.put("tiptime", this.tipTime.toString());
 		r.put("tipstatus", this.tipStatus);
 		r.put("tipid", this.tipId);
 		r.put("tipname", this.tipName);
-		r.put("username", this.userName);
 		r.put("userid", this.userId);
+		r.put("username", this.userName);
 		return r.toString();
 	}
 	

@@ -74,4 +74,17 @@ public class AdminDaoImpl implements AdminDao {
 		return res;
 	}
 
+
+
+	@Override
+	public int reportRes(int id) {
+		int res = -1;
+		try {
+			res = jdbcOp.update(Sql.ADMIN_REPORT_DO,id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }
