@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
@@ -92,7 +93,7 @@ public class AdminController {
 	 * @param out
 	 */
 	@RequestMapping(value = "/reportlist", method = POST)
-	public void reportlist(long pagenum, long pagesize,  PrintWriter out) {
-
+	public void reportlist(@RequestParam(defaultValue="1") int pagenum ,@RequestParam(defaultValue="5") int pagesize,  PrintWriter out) {
+		out.print(ad.reportList((pagenum - 1) * pagesize, pagesize));
 	}
 }

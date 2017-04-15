@@ -12,6 +12,7 @@ import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.odyz.model.ReportModel;
 import com.odyz.rowmapp.AdminRowMapper;
+import com.odyz.rowmapp.ReportRowMapper;
 import com.util.Sql;
 
 @Repository
@@ -62,10 +63,11 @@ public class AdminDaoImpl implements AdminDao {
 
 
 	@Override
-	public List<ReportModel> reportList(int pageNum, int pageSize) {
+	public List<ReportModel> reportList(int skip, int limit) {
 		List<ReportModel> res = new ArrayList<>();
 		try {
-			
+			res = jdbcOp.query(Sql.ADMIN_REPORT_LIST, new Object[]{skip,limit}, new ReportRowMapper());
+//			res = jdbcOp.queryForList(Sql.ADMIN_REPORT_LIST,skip,limit);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

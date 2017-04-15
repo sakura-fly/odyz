@@ -2,6 +2,8 @@ package com.odyz.model;
 
 import java.sql.Date;
 
+import net.sf.json.JSONObject;
+
 
 /**
  * 举报信息
@@ -11,13 +13,15 @@ import java.sql.Date;
  */
 public class ReportModel {
 	
-	public ReportModel(int id, int userid, int tipid, String tipMessage, int tipStatus, Date date) {
+	public ReportModel(int id, int userid, int tipid, String tipMessage, int tipStatus, Date date,String userName,String tipName) {
 		this.id = id;
 		this.userId = userid;
 		this.tipId = tipid;
 		this.tipMessage = tipMessage;
 		this.tipStatus = tipStatus;
-		this.tipTime = date;
+		this.tipName= tipName;
+		this.userName = userName;
+		
 	}
 
 	
@@ -46,6 +50,10 @@ public class ReportModel {
 	 * 举报时间
 	 */
 	private Date tipTime;
+	
+	private String userName;
+	
+	private String tipName;
 
 	public int getId() {
 		return id;
@@ -95,4 +103,19 @@ public class ReportModel {
 		this.tipTime = tipTime;
 	}
 
+	
+	@Override
+	public String toString() {
+		JSONObject r = new JSONObject();
+		r.put("id", this.id);
+		r.put("tipmessage", this.tipMessage);
+		r.put("tiptime", this.tipTime);
+		r.put("tipstatus", this.tipStatus);
+		r.put("tipid", this.tipId);
+		r.put("tipname", this.tipName);
+		r.put("username", this.userName);
+		r.put("userid", this.userId);
+		return r.toString();
+	}
+	
 }
