@@ -12,9 +12,11 @@ import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.odyz.model.ReportModel;
 import com.odyz.model.StuValidate;
+import com.odyz.model.UserModel;
 import com.odyz.rowmapp.AdminRowMapper;
 import com.odyz.rowmapp.ReportRowMapper;
 import com.odyz.rowmapp.StudentRowMapper;
+import com.odyz.rowmapp.UserRowMapp;
 import com.util.Sql;
 
 @Repository
@@ -108,6 +110,19 @@ public class AdminDaoImpl implements AdminDao {
 		int res = -1;
 		try {
 			res = jdbcOp.update(Sql.ADMIN_STU_DO,dores,snum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+
+
+	@Override
+	public List<UserModel> userList(int skip, int limit) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.ADMIN_USER_LIST, new Object[]{skip,limit}, new UserRowMapp());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

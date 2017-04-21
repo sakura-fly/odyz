@@ -8,4 +8,5 @@ public class Sql {
 	public static final String ADMIN_REPORT_DO = "update report set tipstatus = 1 where id = ?";
 	public static final String ADMIN_STU_LIST = "select * from stuValidate limit ?,?";
 	public static final String ADMIN_STU_DO = "update stuValidate set stuStat = ? where stuNumber = ?";
+	public static final String ADMIN_USER_LIST = "select * from OldDeal_user limit ?,?";
 }

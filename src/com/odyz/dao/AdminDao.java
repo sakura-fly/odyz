@@ -5,6 +5,7 @@ import java.util.List;
 import com.odyz.model.AdminModel;
 import com.odyz.model.ReportModel;
 import com.odyz.model.StuValidate;
+import com.odyz.model.UserModel;
 
 /**
  * 管理员DAO接口
@@ -62,6 +63,14 @@ public interface AdminDao {
 	 * @return
 	 */
 	public int stuDo(int snum,int res);
+	
+	/**
+	 * 获取用户列表
+	 * @param skip	跳过条数
+	 * @param limit	查询条数
+	 * @return
+	 */
+	public List<UserModel> userList(int skip,int limit);
 	
 	
 	

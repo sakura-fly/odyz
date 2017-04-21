@@ -1,7 +1,5 @@
 package com.odyz.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.Size;
 
 import com.sun.istack.internal.NotNull;
@@ -27,8 +25,6 @@ public class AdminModel {
 		this.pwd = pwd;
 	}
 	
-	@Id
-	@GeneratedValue
 	private int id;
 	
 	/**
