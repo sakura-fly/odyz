@@ -4,7 +4,6 @@ import java.sql.Date;
 
 import net.sf.json.JSONObject;
 
-
 /**
  * 举报信息
  * 
@@ -12,87 +11,85 @@ import net.sf.json.JSONObject;
  *
  */
 public class ReportModel {
-	
-	public ReportModel(int id, int userid, int tipid, String tipMessage, int tipStatus, Date date,String userName,String tipName) {
-		this.id = id;
-		this.userId = userid;
-		this.tipId = tipid;
-		this.tipMessage = tipMessage;
-		this.tipStatus = tipStatus;
-		this.tipName= tipName;
-		this.userName = userName;
-		this.tipTime = date;
-	}
 
-	
-	/**
-	 * ID
-	 */
-	private int id;
-	/**
-	 * 举报用户ID
-	 */
-	private int userId;
-	/**
-	 * 被举报用户ID
-	 */
-	private int tipId;
-	/**
-	 * 举报信息
-	 */
-	private String tipMessage;
-	/**
-	 * 举报状态
-	 * 0：未读、1：已处理
-	 */
-	private int tipStatus;
-	/**
-	 * 举报时间
-	 */
-	private Date tipTime;
-	
-	private String userName;
-	
+	private int rid;
 	private String tipName;
-
-	public int getId() {
-		return id;
+	private String uname;
+	private String pname;
+	private String reason;
+	private Date tipTime;
+	private int tipStatus;
+	
+	public ReportModel() {
+		// TODO Auto-generated constructor stub
 	}
+	
+	
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public int getUserId() {
-		return userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-
-	public int getTipId() {
-		return tipId;
-	}
-
-	public void setTipId(int tipId) {
-		this.tipId = tipId;
-	}
-
-	public String getTipMessage() {
-		return tipMessage;
-	}
-
-	public void setTipMessage(String tipMessage) {
-		this.tipMessage = tipMessage;
-	}
-
-	public int getTipStatus() {
-		return tipStatus;
-	}
-
-	public void setTipStatus(int tipStatus) {
+	public ReportModel(String tipName, String uname, String pname, String reason, Date tipTime, int tipStatus) {
+		super();
+		this.tipName = tipName;
+		this.uname = uname;
+		this.pname = pname;
+		this.reason = reason;
+		this.tipTime = tipTime;
 		this.tipStatus = tipStatus;
+	}
+
+
+
+	public ReportModel(int rid, String tipName, String uname, String pname, String reason, Date tipTime,
+			int tipStatus) {
+		super();
+		this.rid = rid;
+		this.tipName = tipName;
+		this.uname = uname;
+		this.pname = pname;
+		this.reason = reason;
+		this.tipTime = tipTime;
+		this.tipStatus = tipStatus;
+	}
+
+
+
+	public int getRid() {
+		return rid;
+	}
+
+	public void setRid(int rid) {
+		this.rid = rid;
+	}
+
+	public String getTipName() {
+		return tipName;
+	}
+
+	public void setTipName(String tipName) {
+		this.tipName = tipName;
+	}
+
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	public Date getTipTime() {
@@ -103,19 +100,47 @@ public class ReportModel {
 		this.tipTime = tipTime;
 	}
 
-	
-	@Override
-	public String toString() {
-		JSONObject r = new JSONObject();
-		r.put("id", this.id);
-		r.put("tipmessage", this.tipMessage);
-		r.put("tiptime", this.tipTime.toString());
-		r.put("tipstatus", this.tipStatus);
-		r.put("tipid", this.tipId);
-		r.put("tipname", this.tipName);
-		r.put("userid", this.userId);
-		r.put("username", this.userName);
-		return r.toString();
+	public int getTipStatus() {
+		return tipStatus;
 	}
 	
+	
+
+	public void setTipStatus(int tipStatus) {
+		this.tipStatus = tipStatus;
+		
+		
+		
+		
+	}
+
+
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"rid\":");
+		builder.append(rid);
+		builder.append(",\"tipName\":\"");
+		builder.append(tipName);
+		builder.append("\",\"uname\":\"");
+		builder.append(uname);
+		builder.append("\",\"pname\":\"");
+		builder.append(pname);
+		builder.append("\",\"reason\":\"");
+		builder.append(reason);
+		builder.append("\",\"tipTime\":\"");
+		builder.append(tipTime.toString());
+		builder.append("\",\"tipStatus\":");
+		builder.append(tipStatus);
+		builder.append("}  ");
+		return builder.toString();
+	}
+
+
+
+	
+	
+	
+
 }

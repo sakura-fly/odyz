@@ -65,6 +65,7 @@ public class AdminModel {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+
 	
 	@Override
 	public String toString() {

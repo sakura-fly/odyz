@@ -3,77 +3,27 @@ package com.odyz.model;
 import net.sf.json.JSONObject;
 
 public class StuValidate {
-	
-	public StuValidate(int stuNumber,String stuSchool,String stuName,int stuCollege,int stuId,String stuPic,int stat) {
-		this.stat = stat;
-		this.stuCollege = stuCollege;
-		this.stuId = stuId;
-		this.stuNumber = stuNumber;
-		this.stuPic = stuPic;
-		this.stuSchool = stuSchool;
-		this.stuName = stuName;
-	}
 
-	/**
-	 * 认证编号
-	 */
-	private int stuNumber;
-	/**
-	 * 学校
-	 */
-	private String stuSchool;
-	/**
-	 * 姓名
-	 */
-	private String stuName;
-	/**
-	 * 学院
-	 */
-	private int stuCollege;
-	/**
-	 * 用户编号
-	 */
 	private int stuId;
-	/**
-	 * 认证图片
-	 */
-	private String stuPic;
-	/**
-	 * 认证状态
-	 * 0：待认证、1：认证成功、-1：认证失败
-	 */
-	private int stat;
+	private int userId;
+	private String stuSchool;
+	private String stuCollege;
+	private String stuNumber;
+	private String stuName;
+	private String stuImg;
+	private int verifyStatus;
 
-	public int getStuNumber() {
-		return stuNumber;
-	}
-
-	public void setStuNumber(int stuNumber) {
-		this.stuNumber = stuNumber;
-	}
-
-	public String getStuSchool() {
-		return stuSchool;
-	}
-
-	public void setStuSchool(String stuSchool) {
+	public StuValidate(int stuId, int userId, String stuSchool, String stuCollege, String stuNumber, String stuName,
+			String stuImg, int verifyStatus) {
+		super();
+		this.stuId = stuId;
+		this.userId = userId;
 		this.stuSchool = stuSchool;
-	}
-
-	public String getStuName() {
-		return stuName;
-	}
-
-	public void setStuName(String stuName) {
-		this.stuName = stuName;
-	}
-
-	public int getStuCollege() {
-		return stuCollege;
-	}
-
-	public void setStuCollege(int stuCollege) {
 		this.stuCollege = stuCollege;
+		this.stuNumber = stuNumber;
+		this.stuName = stuName;
+		this.stuImg = stuImg;
+		this.verifyStatus = verifyStatus;
 	}
 
 	public int getStuId() {
@@ -84,34 +34,85 @@ public class StuValidate {
 		this.stuId = stuId;
 	}
 
-	public String getStuPic() {
-		return stuPic;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setStuPic(String stuPic) {
-		this.stuPic = stuPic;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public int getStat() {
-		return stat;
+	public String getStuSchool() {
+		return stuSchool;
 	}
 
-	public void setStat(int stat) {
-		this.stat = stat;
+	public void setStuSchool(String stuSchool) {
+		this.stuSchool = stuSchool;
 	}
-	
-	
+
+	public String getStuCollege() {
+		return stuCollege;
+	}
+
+	public void setStuCollege(String stuCollege) {
+		this.stuCollege = stuCollege;
+	}
+
+	public String getStuNumber() {
+		return stuNumber;
+	}
+
+	public void setStuNumber(String stuNumber) {
+		this.stuNumber = stuNumber;
+	}
+
+	public String getStuName() {
+		return stuName;
+	}
+
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
+	}
+
+	public String getStuImg() {
+		return stuImg;
+	}
+
+	public void setStuImg(String stuImg) {
+		this.stuImg = stuImg;
+	}
+
+	public int getVerifyStatus() {
+		return verifyStatus;
+	}
+
+	public void setVerifyStatus(int verifyStatus) {
+		this.verifyStatus = verifyStatus;
+	}
+
 	@Override
 	public String toString() {
-		JSONObject res = new JSONObject();
-		res.put("stat", stat);
-		res.put("stuNumber", stuNumber);
-		res.put("stuSchool", stuSchool);
-		res.put("stuName", stuName);
-		res.put("stuId", stuId);
-		res.put("stuPic", stuPic);
-		return res.toString();
+		StringBuilder builder = new StringBuilder();
+		builder.append("{\"stuId\":\"");
+		builder.append(stuId);
+		builder.append("\",\"userId\":\"");
+		builder.append(userId);
+		builder.append("\",\"stuSchool\":\"");
+		builder.append(stuSchool);
+		builder.append("\",\"stuCollege\":\"");
+		builder.append(stuCollege);
+		builder.append("\",\"stuNumber\":\"");
+		builder.append(stuNumber);
+		builder.append("\",\"stuName\":\"");
+		builder.append(stuName);
+		builder.append("\",\"stuImg\":\"");
+		builder.append(stuImg);
+		builder.append("\",\"verifyStatus\":\"");
+		builder.append(verifyStatus);
+		builder.append("\"} ");
+		return builder.toString();
 	}
-	
-	
+
+
+
 }
