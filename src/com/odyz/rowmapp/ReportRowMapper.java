@@ -11,7 +11,9 @@ public final class ReportRowMapper implements RowMapper<ReportModel> {
 
 	@Override
 	public ReportModel mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new ReportModel(rs.getInt("id"), rs.getInt("userid"), rs.getInt("tipid"), rs.getString("tipmessage"),rs.getInt("tipstatus"),rs.getDate("tiptime"),rs.getString("username"),rs.getString("tipname"));
+		
+		return new ReportModel(rs.getInt("rid"),rs.getString("tipName"),rs.getString("uname"),rs.getString("pname"),
+				rs.getString("reason"),rs.getDate("tipTime"),rs.getInt("tipStatus"));
 	}
 
 }

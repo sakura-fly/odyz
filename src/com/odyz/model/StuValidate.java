@@ -1,7 +1,5 @@
 package com.odyz.model;
 
-import net.sf.json.JSONObject;
-
 public class StuValidate {
 
 	private int stuId;
@@ -28,6 +26,18 @@ public class StuValidate {
 
 	public int getStuId() {
 		return stuId;
+	}
+
+	public StuValidate(int userId, String stuSchool, String stuCollege, String stuNumber, String stuName, String stuImg,
+			int verifyStatus) {
+		super();
+		this.userId = userId;
+		this.stuSchool = stuSchool;
+		this.stuCollege = stuCollege;
+		this.stuNumber = stuNumber;
+		this.stuName = stuName;
+		this.stuImg = stuImg;
+		this.verifyStatus = verifyStatus;
 	}
 
 	public void setStuId(int stuId) {
@@ -112,7 +122,5 @@ public class StuValidate {
 		builder.append("\"} ");
 		return builder.toString();
 	}
-
-
 
 }

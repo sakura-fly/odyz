@@ -11,7 +11,10 @@ public final class StudentRowMapper implements RowMapper<StuValidate> {
 
 	@Override
 	public StuValidate mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new StuValidate(rs.getInt("stuNumber"), rs.getString("stuSchool"), rs.getString("stuName"),rs.getInt("stuCollege"),rs.getInt("stuId"),rs.getString("stuPic"),rs.getInt("stuStat"));
+
+
+		return new StuValidate(rs.getInt("userId"), rs.getString("stuSchool"), rs.getString("stuCollege"),
+				rs.getString("stuNumber"), rs.getString("stuName"), rs.getString("stuImg"), rs.getInt("verifyStatus"));
 	}
 
 }
