@@ -35,6 +35,7 @@ public class AdminDaoImpl implements AdminDao {
 	public AdminModel login(AdminModel admin) {
 		AdminModel adminx = null;
 		try {
+			
 			adminx = jdbcOp.queryForObject(Sql.ADMIN_LOGIN, new AdminRowMapper(), admin.getUserName(), admin.getPwd());
 		} catch (Exception e) {
 			e.printStackTrace();

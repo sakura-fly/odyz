@@ -1,6 +1,7 @@
 package com.odyz.model;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 
 /**
@@ -16,7 +17,7 @@ public class ReportModel {
 	private String uname;
 	private String pname;
 	private String reason;
-	private Date tipTime;
+	private Timestamp tipTime;
 	private int tipStatus;
 	
 	public ReportModel() {
@@ -25,7 +26,7 @@ public class ReportModel {
 	
 	
 
-	public ReportModel(String tipName, String uname, String pname, String reason, Date tipTime, int tipStatus) {
+	public ReportModel(String tipName, String uname, String pname, String reason, Timestamp tipTime, int tipStatus) {
 		super();
 		this.tipName = tipName;
 		this.uname = uname;
@@ -37,7 +38,7 @@ public class ReportModel {
 
 
 
-	public ReportModel(int rid, String tipName, String uname, String pname, String reason, Date tipTime,
+	public ReportModel(int rid, String tipName, String uname, String pname, String reason, Timestamp tipTime,
 			int tipStatus) {
 		super();
 		this.rid = rid;
@@ -91,11 +92,11 @@ public class ReportModel {
 		this.reason = reason;
 	}
 
-	public Date getTipTime() {
+	public Timestamp getTipTime() {
 		return tipTime;
 	}
 
-	public void setTipTime(Date tipTime) {
+	public void setTipTime(Timestamp tipTime) {
 		this.tipTime = tipTime;
 	}
 
