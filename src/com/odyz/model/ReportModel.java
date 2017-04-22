@@ -2,7 +2,6 @@ package com.odyz.model;
 
 import java.sql.Date;
 
-import net.sf.json.JSONObject;
 
 /**
  * 举报信息
