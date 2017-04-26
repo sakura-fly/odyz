@@ -11,34 +11,26 @@ $("#btn-login").click(function() {
     var loginData = $('#login-form').serialize();
     console.log("loginData:" + loginData);
 
-    txt = 'ok';
-    if (txt == 'ok') { //登录成功
-        $('.modal').fadeOut(300);
-        var loginName = $("[name='uname']").val();
-        sessionStorage['loginName'] = loginName;
-        console.log(sessionStorage['loginName']);
-
-    } else { //登录失败
-        $('.modal .alert').html('登录失败！错误消息为：' + txt);
-    }
+    
 
 
-    // $.ajax({
-    //     type: 'POST',
-    //     url: 'data/login.php',
-    //     data:loginData,
-    //     success: function(txt, msg, xhr){
-    //         if(txt=='ok'){  //登录成功
-    //             $('.modal').fadeOut(300);
-    //             var loginName=$("[name='uname']").val();
-    //             sessionStorage['loginName']=loginName;
-    //             console.log(sessionStorage['loginName']);
+    $.ajax({
+        type: 'POST',
+        url: 'admin/login',
+        data:loginData,
+        success: function(txt, msg, xhr){
+            console.log(txt)
+            if(txt=='ok'){  //登录成功
+                $('.modal').fadeOut(300);
+                var loginName=$("[name='uname']").val();
+                sessionStorage['loginName']=loginName;
+                console.log(sessionStorage['loginName']);
 
-    //         }else { //登录失败
-    //             $('.modal .alert').html('登录失败！错误消息为：'+txt);
-    //         }
-    //     }
-    // });
+            }else { //登录失败
+                $('.modal .alert').html('登录失败！错误消息为：'+txt);
+            }
+        }
+    });
 });
 //左侧点击事件
 //商品信息

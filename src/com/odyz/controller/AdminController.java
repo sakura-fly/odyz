@@ -44,9 +44,9 @@ public class AdminController {
 	public void lgoin(@Validated AdminModel u, Errors e, PrintWriter out) {
 		AdminModel admin = ad.login(u);
 		if (admin == null) {
-			out.print(DefRes.dr(-1, "defeated"));
+			out.print("用户名或密码错误");
 		} else {
-			out.print(DefRes.dr(1, "succeed"));
+			out.print("ok");
 		}
 	}
 
