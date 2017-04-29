@@ -36,7 +36,7 @@ function loadProductByPage(pageNum){
                   <td>` + d.price + `</td>
                   <td>` + d.pic1 + `</td>
                   <td>` + d.status + `</td>
-                  <td><button class="` + d.PID + `" id="del">删除</button></td>
+                  <td><button class="` + d.pid + `" id="del">删除</button></td>
                 </tr>
                 `;
             });
