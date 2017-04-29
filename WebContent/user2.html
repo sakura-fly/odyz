@@ -23,20 +23,20 @@
       <ul>
         <li><a class="product">商品信息处理 <i></i></a></li>
         <li>
-          <a class="user">用户信息处理 <i></i></a>
+          <a class="user curr">用户信息处理 <i></i></a>
           <ol>
             <li><a class="all">所有用户信息</a></li>
-            <li><a class="normal">正常用户</a></li>
+            <li><a class="normal curr">正常用户</a></li>
             <li><a class="ban">禁止发布用户</a></li>
             <li><a class="delete">封号用户</a></li>
           </ol>
         </li>
         <li><a class="report">举报处理<i></i></a></li>
         <li><a class="stuvalidate">学生认证处理 <i></i></a></li>
-        <li><a class="manager curr">管理员信息处理 <i></i></a></li>
+        <li><a class="manager">管理员信息处理 <i></i></a></li>
       </ul>
     </div>
-    <div id="product" class="lf">
+    <div id="user" class="lf">
       <p class="base clearfix">
         <span class="lf">你好，用户名</span>
         <span class="lf date">2017年4月24日  星期一</span>
@@ -45,20 +45,19 @@
         <a class="rt last"><i></i>后退</a>
         <a class="rt index"><i></i>首页</a>
       </p>
-      <p class="catalog">首页 <i></i>商品信息处理</p>
+      <p class="catalog">首页 <i></i> 用户信息处理 <i></i> 正常用户</p>
       <div class="form1">
-        <input id="txtSearch" type="text" name="search" value="" placeholder="商品名或用户名"/>
+        <input id="txtSearch" type="text" name="search" value="" placeholder="用户名"/>
         <input type="button" value="搜索" id="search-btn"/>
       </div>
       <table>
         <thead>
           <tr>
-            <th>商品编号</th>
-            <th>发布者</th>
-            <th>商品名称</th>
-            <th>商品价格</th>
-            <th>图片</th>
-            <th>状态</th>
+            <th>用户编号</th>
+            <th>用户名</th>
+            <th>他人邀请码</th>
+            <th>积分</th>
+            <th>权限等级</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -71,7 +70,7 @@
   </section>
   <script src="js/jquery-1.11.3.js"></script>
   <script src="js/public.js"></script>
-  <script src="js/productlist.js"></script>
-  <script src="js/productSearch.js"></script>
+  <script src="js/userlist2.js"></script>
+  <script src="js/userSearch2.js"></script>
 </body>
 </html>

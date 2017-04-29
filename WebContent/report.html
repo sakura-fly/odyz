@@ -22,8 +22,16 @@
     <div class="lf title">
       <ul>
         <li><a class="product">商品信息处理 <i></i></a></li>
-        <li><a   class="user">用户信息处理 <i></i></a></li>
-        <li><a class="report curr">举报处理<i></i></a></li>
+        <li>
+          <a class="user">用户信息处理 <i></i></a>
+          <ol>
+            <li><a class="all">所有用户信息</a></li>
+            <li><a class="normal">正常用户</a></li>
+            <li><a class="ban">禁止发布用户</a></li>
+            <li><a class="delete">封号用户</a></li>
+          </ol>
+        </li>
+        <li><a class="report  curr">举报处理<i></i></a></li>
         <li><a class="stuvalidate">学生认证处理 <i></i></a></li>
         <li><a class="manager">管理员信息处理 <i></i></a></li>
       </ul>
@@ -32,18 +40,15 @@
       <p class="base clearfix">
         <span class="lf">你好，用户名</span>
         <span class="lf date">2017年4月24日  星期一</span>
-        <a class="rt" href=""><i></i>注销</a>
-        <a class="rt" href=""><i></i>刷新</a>
-        <a class="rt" href=""><i></i>后退</a>
-        <a class="rt" href=""><i></i>首页</a>
+        <a class="rt exit"><i></i>注销</a>
+        <a class="rt reload"><i></i>刷新</a>
+        <a class="rt last"><i></i>后退</a>
+        <a class="rt index"><i></i>首页</a>
       </p>
-      <p class="catalog">首页 <i></i> 管理员操作 <i></i> 举报</p>
+      <p class="catalog">首页 <i></i> 举报处理</p>
       <div class="form1">
-        <label for="count">每页数量</label>
-        <input id="count" type="text" name="count" value="2"/>
-        <label for="pager">页码</label>
-        <input id="pager" type="text" name="pager" value="1"/>
-        <input type="button" value="ok" id="ok-btn"/>
+        <input id="txtSearch" type="text" name="search" value="" placeholder="被举报人名字"/>
+        <input type="button" value="搜索" id="search-btn"/>
       </div>
       <table>
         <thead>
@@ -54,54 +59,20 @@
             <th>商品名称</th>
             <th>举报理由</th>
             <th>举报状态</th>
+            <th>处理结果</th>
             <th>操作</th>
           </tr>
         </thead>
         <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
         </tbody>
       </table>
       <p class="pager">
-        <a href="">首页</a><a href="">上一页</a><a href="">1</a><a href="" class="curr">2</a><a href="">3</a><a href="">下一页</a><a href="">尾页</a>
       </p>
     </div>
   </section>
   <script src="js/jquery-1.11.3.js"></script>
   <script src="js/public.js"></script>
+  <script src="js/reportlist.js"></script>
+  <script src="js/reportSearch.js"></script>
 </body>
 </html>

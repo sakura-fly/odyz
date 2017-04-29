@@ -1,8 +1,9 @@
 /**
  * Created by haedu on 2017/3/23.
  */
+ console.log("userlist");
 $(function(){
-    loadProductByPage(1);
+    loadUserByPage(1);
 });
 
 /**功能点5：用户点击分页条中的页号时，实现数据的异步加载**/
@@ -10,29 +11,31 @@ $('#product .pager').on('click','a',function(event){
     event.preventDefault(); //阻止跳转行为
     //获取要跳转的页号
     var pageNum = $(this).attr('href');
-    loadProductByPage(pageNum);
+    loadUserByPage(pageNum);
 });
 
-function loadProductByPage(pageNum){
+function loadUserByPage(pageNum){
     $.ajax({
-        url:"data/loadproduct.php?pageNum="+pageNum,
+        url:"data/loaduser0.php?pageNum="+pageNum,
         data: {mname: sessionStorage['loginName']},
         success:function(pager){
             var html='';
             $.each(pager.data,function(i,d){
                 html+=`
                 <tr>
-                  <td>${d.PID}</td>
-                  <td>${d.UNAME}</td>
-                  <td>${d.PNAME}</td>
-                  <td>${d.PRICE}</td>
-                  <td>${d.PIC1}</td>
-                  <td>${d.STAUS}</td>
-                  <td><button class="${d.PID}" id="del">删除</button></td>
+                  <td>${d.uid}</td>
+                  <td>${d.uname}</td>
+                  <td>${d.otherCode}</td>
+                  <td>${d.integral}</td>
+                  <td>${d.memberLevel}</td>
+                  <td>
+                    <button class="${d.uname}" id="cancelDel">解除封号</button>
+                     <button class="${d.uname}" id="ban">禁止发布</button>
+                  </td>
                 </tr>
                 `;
             });
-            $("#product table tbody").html(html);
+            $("#user table tbody").html(html);
             //根据返回的响应数据动态创建分页条
             var html = '';
             //html += `<a href="${pager.pageNum-pager.pageNum+1}">首页</a> `;
@@ -50,38 +53,52 @@ function loadProductByPage(pageNum){
                 html += `<a href="${pager.pageNum+2}">${pager.pageNum+2}</a> `;
             }
             //html += `<a href="${pager.pageNum}">尾页</a> `;
-            $('#product .pager').html(html);
+            $('#user .pager').html(html);
+
 
             //循环遍历状态
-            var trList = $("#product tbody").children("tr")
+            var trList = $("#user tbody").children("tr")
             console.log(trList.length);
             for (var i=0;i<trList.length;i++) {
                 var tdArr = trList.eq(i).find("td");
-                if(tdArr.eq(5).html()==="1"){
-                    tdArr.eq(5).html("正常");
-                    console.log("正常");
-                    //tdArr.eq(3).find('button').html("确认付款");
-                }else if(tdArr.eq(5).html()==="0"){
-                    tdArr.eq(5).html("已下架");
-                    //tdArr.eq(3).find('button').html("交易完成");
+                if(tdArr.eq(4).html()==="0"){
+                    tdArr.eq(4).html("封号");
+                    tdArr.eq(5).find('button#cancelDel').html("解除封号");
+                    tdArr.eq(5).find('button#ban').html("禁止发布");
                 }
             }
-
-            //删除商品
-            $('#product tbody').on('click','#del',function(event){
+            //
+            //解除封号
+            $('#user tbody').on('click','#cancelDel',function(event){
                 event.preventDefault();
-                var pid = $(this).attr('class');
+                var uname = $(this).attr('class');
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/deleteProduct.php',
-                    data: {mname: sessionStorage['loginName'],pid:pid},
+                    url: 'data/cancelDeleteUser.php',
+                    data: {mname: sessionStorage['loginName'],uname:uname},
                     success: function(obj){
-                        alert("商品删除成功");
+                        alert("解除封号成功");
                         location.reload();
                     }
                 });
             });
+            //禁止发布
+            $('#user tbody').on('click','#ban',function(event){
+                event.preventDefault();
+                var uname = $(this).attr('class');
+                //发起异步请求
+                $.ajax({
+                    type: 'POST',
+                    url: 'data/banUser.php',
+                    data: {mname: sessionStorage['loginName'],uname:uname},
+                    success: function(obj){
+                        alert("禁止发布成功");
+                        location.reload();
+                    }
+                });
+            });
+
         }
     });
 }

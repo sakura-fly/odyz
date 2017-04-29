@@ -166,7 +166,10 @@ SET NAMES UTF8;
     stuImg varchar(64),
     verifyStatus varchar(64)
   );
-
+INSERT INTO stuValidate VALUES
+  (NULL,1,'中原工学院','软件学院','201370024104','史宁宁','','1'),
+  (NULL,2,'中原工学院','软件学院','201370024203','高雪芳','','1'),
+  (NULL,3,'中原工学院','软件学院','201370024116','王基峰','','1');
   CREATE TABLE wantBuy
   (
     wbid INT PRIMARY KEY AUTO_INCREMENT,
@@ -192,8 +195,11 @@ SET NAMES UTF8;
     pname varchar(64),
     reason varchar(200),
     tipTime int,
-    tipStatus int
+    tipStatus int,
+    cancel varchar(512)
   );
+  INSERT INTO report VALUES
+    (1,'flower','snow','JAVA书','假的',1531261513,1,"");
   CREATE TABLE soldOrder
     (
       sid INT PRIMARY KEY AUTO_INCREMENT,
@@ -213,4 +219,6 @@ SET NAMES UTF8;
         mpwd varchar(64)
       );
       INSERT INTO manager VALUES
-      (1,'wangjf','123456');
+      (1,'wangjf','123456'),
+      (2,'snow','123456'),
+      (3,'flower','123456');

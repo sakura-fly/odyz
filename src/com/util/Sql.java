@@ -9,4 +9,6 @@ public class Sql {
 	public static final String ADMIN_STU_LIST = "select * from stuValidate limit ?,?";
 	public static final String ADMIN_STU_DO = "update stuValidate set stuStat = ? where stuNumber = ?";
 	public static final String ADMIN_USER_LIST = "select * from OldDeal_user limit ?,?";
+	public static final String ADMIN_COUNT = "select count(*) from ?";
+	public static final String USER_LV = "where memberLevel = ?";
 }

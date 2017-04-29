@@ -20,7 +20,7 @@ $conn = mysqli_connect('localhost', 'root', 'JIUbugaosuni', 'OldDeal');
 $sql  = "set names utf8";
 mysqli_query($conn, $sql);
 //sql2 获取总记录数 计算总页数
-$sql                  = "select count(*)from olddeal_user";
+$sql                  = "select count(*)from manager";
 $result               = mysqli_query($conn, $sql);
 $row                  = mysqli_fetch_assoc($result);
 $result               = mysqli_query($conn, $sql);
@@ -31,7 +31,7 @@ $pager['pageCount']   = ceil(($pager['recordCount'])/($pager["pageSize"]));
 //sql3 获取当前指定页中的数据
 $count         = $pager['pageSize'];
 $start         = ($pager['pageNum']-1)*$count;
-$sql           = "select *from olddeal_user limit $start,$count";
+$sql           = "select *from manager limit $start,$count";
 $result        = mysqli_query($conn, $sql);
 $pager['data'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 $str           = json_encode($pager);

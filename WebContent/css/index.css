@@ -80,12 +80,22 @@ section{
     background: #2e3846;
     background: url("../img/small.png") no-repeat -77px 0;
 }
+.title ul li a.curr{
+    color: #ee8328;
+}
 .title ul li a.curr i{
     background: url("../img/small.png") no-repeat -100px 2px;
 }
+/*.title ul li ol{*/
+    /*display: none;*/
+/*}*/
 .title ul li ol li a{
     padding: 0 60px;
     font-size: 14px;
+}
+
+.title ul li ol li a.curr{
+    color: #ee8328;
 }
 #report,#product,#user,#manager,#stuvalidate{
     width: 950px;
@@ -117,6 +127,10 @@ p.base a{
     line-height: 40px;
     margin-left: 10px;
     font-size: 14px;
+}
+p.base a:hover{
+    color: #ee8328;
+    cursor: pointer;
 }
 p.base a i{
     display: inline-block;
@@ -165,7 +179,7 @@ p.base>a:nth-child(5) i{
     border: 1px solid #a9a9a9;
     padding-left: 5px;
 }
-#ok-btn{
+#search-btn{
     width: 50px;
     padding: 0;
 }
@@ -180,11 +194,29 @@ table thead th{
 line-height: 30px;
 }
 table tbody td{
-    width: 150px;
+    width: 100px;
     text-align: center;
     height: 30px;
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
+}
+table tbody td button{
+    background: transparent;
+    cursor: pointer;
+}
+table tbody td #del,#fail{
+    border: 0;
+    color: #E20805;
+    cursor: pointer;
+}
+table tbody td #ban{
+    color: #E2830B;
+}
+table tbody td #cancelBan,table tbody td #cancelDel{
+    color: #1E3BE2;
+}
+#pass{
+    color: #23dd28;
 }
 p.pager{
     text-align: center;

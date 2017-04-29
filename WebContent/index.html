@@ -22,9 +22,17 @@
     <div class="lf title">
       <ul>
         <li><a class="product">商品信息处理 <i></i></a></li>
-        <li><a   class="user">用户信息处理 <i></i></a></li>
+        <li>
+          <a class="user">用户信息处理 <i></i></a>
+          <ol>
+            <li><a class="all">所有用户信息</a></li>
+            <li><a class="normal">正常用户</a></li>
+            <li><a class="ban">禁止发布用户</a></li>
+            <li><a class="delete">封号用户</a></li>
+          </ol>
+        </li>
         <li><a class="report">举报处理<i></i></a></li>
-        <li><a class="stuvalidate  curr">学生认证处理 <i></i></a></li>
+        <li><a class="stuvalidate">学生认证处理 <i></i></a></li>
         <li><a class="manager">管理员信息处理 <i></i></a></li>
       </ul>
     </div>
@@ -32,10 +40,10 @@
       <p class="base clearfix">
         <span class="lf">你好，用户名</span>
         <span class="lf date">2017年4月24日  星期一</span>
-        <a class="rt" href=""><i></i>注销</a>
-        <a class="rt" href=""><i></i>刷新</a>
-        <a class="rt" href=""><i></i>后退</a>
-        <a class="rt" href=""><i></i>首页</a>
+        <a class="rt exit"><i></i>注销</a>
+        <a class="rt reload"><i></i>刷新</a>
+        <a class="rt last"><i></i>后退</a>
+        <a class="rt index"><i></i>首页</a>
       </p>
       <p class="catalog">首页</p>
       <h3 style="text-align: center;margin-top: 100px">欢迎来到偶的驿站后台管理系统</h3>
@@ -50,8 +58,8 @@
           请在此处输入您的账户信息。
         </p>
         <form id="login-form">
-          <input type="text" name="userName" value="" placeholder="用户名"/>
-          <input type="text" name="pwd" value="" placeholder="密码"/>
+          <input type="text" name="uname" value="" placeholder="用户名"/>
+          <input type="text" name="mpwd" value="" placeholder="密码"/>
           <input type="button" value="登录" id="btn-login">
         </form>
       </div>
