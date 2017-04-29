@@ -29,7 +29,7 @@ $("#btn-login").click(function(){
     var loginData = $('#login-form').serialize();
     $.ajax({
         type: 'POST',
-        url: 'data/login.php',
+        url: 'admin/login',
         data:loginData,
         success: function(txt, msg, xhr){
             if(txt=='ok'){  //登录成功

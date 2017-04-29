@@ -14,21 +14,29 @@ $('#product .pager').on('click','a',function(event){
 });
 
 function loadProductByPage(pageNum){
+
+   
+    
     $.ajax({
-        url:"data/loadproduct.php?pageNum="+pageNum,
+        // url:"data/loadproduct.php?pageNum="+pageNum,
+        url:"admin/publist",
         data: {mname: sessionStorage['loginName']},
+        type: 'POST',
+        dataType:'json',
         success:function(pager){
             var html='';
+            console.log("pager.data=" + pager.data);
+            console.log("pager" + pager);
             $.each(pager.data,function(i,d){
                 html+=`
                 <tr>
-                  <td>${d.PID}</td>
-                  <td>${d.UNAME}</td>
-                  <td>${d.PNAME}</td>
-                  <td>${d.PRICE}</td>
-                  <td>${d.PIC1}</td>
-                  <td>${d.STAUS}</td>
-                  <td><button class="${d.PID}" id="del">删除</button></td>
+                  <td>` + d.pid + `</td>
+                  <td>` + d.uname + `</td>
+                  <td>` + d.pname + `</td>
+                  <td>` + d.price + `</td>
+                  <td>` + d.pic1 + `</td>
+                  <td>` + d.status + `</td>
+                  <td><button class="` + d.PID + `" id="del">删除</button></td>
                 </tr>
                 `;
             });

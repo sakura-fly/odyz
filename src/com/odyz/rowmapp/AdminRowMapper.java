@@ -11,7 +11,7 @@ public final class AdminRowMapper implements RowMapper<AdminModel> {
 
 	@Override
 	public AdminModel mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new AdminModel(rs.getInt("id"), rs.getString("userName"), rs.getString("pwd"));
+		return new AdminModel(rs.getInt("mid"), rs.getString("mname"), rs.getString("mpwd"));
 	}
 
 }

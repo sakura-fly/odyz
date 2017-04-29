@@ -3,6 +3,7 @@ package com.odyz.dao;
 import java.util.List;
 
 import com.odyz.model.AdminModel;
+import com.odyz.model.Pub;
 import com.odyz.model.ReportModel;
 import com.odyz.model.StuValidate;
 import com.odyz.model.UserModel;
@@ -72,6 +73,9 @@ public interface AdminDao {
 	 */
 	public List<UserModel> userList(int skip,int limit);
 	
+	public List<Pub> pubList(int skip,int limit);
 	
+	
+	public int count(String table);
 	
 }

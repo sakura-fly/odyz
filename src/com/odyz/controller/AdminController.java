@@ -3,6 +3,7 @@ package com.odyz.controller;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
+import com.odyz.model.Pub;
 import com.resfmt.DefRes;
+import com.util.Sql;
+
+import net.sf.json.JSONObject;
 
 /**
  * 
@@ -170,6 +175,21 @@ public class AdminController {
 	public void userList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
 		out.print(ad.userList((pagenum - 1) * pagesize, pagesize));
+	}
+	
+	@RequestMapping(value = "/publist", method = POST)
+	public void pubList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			PrintWriter out) {
+		int count = ad.count(Sql.PUB);
+		List<Pub> pubList = ad.pubList((pagenum - 1) * pagesize, pagesize);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil(count/pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
 	}
 
 }
