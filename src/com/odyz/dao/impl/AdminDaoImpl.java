@@ -125,9 +125,7 @@ public class AdminDaoImpl implements AdminDao {
 	public List<Pub> pubList(int skip, int limit) {
 		List<Pub> res = new ArrayList<>();
 		try {
-			String sql  =  Sql.LIST + Sql.PUB + Sql.LIMIT;
-			System.out.println("sql=" + sql);
-			res = jdbcOp.query(sql, new Object[] { skip, limit }, new PubRowMapper());
+			res = jdbcOp.query(Sql.PUB_LIIST, new Object[] { skip, limit }, new PubRowMapper());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -137,6 +135,26 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int count(String table) {
 		Map<String, Object> r = jdbcOp.queryForMap(Sql.COUNT + table);
+		System.out.println(r);
+		return Integer.valueOf(r.get("count(*)").toString());
+	}
+	
+	
+
+	@Override
+	public List<Pub> pubSearch(int skip, int limit, String query) {
+		List<Pub> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.PUB_SEARCH, new Object[] { "%" + query + "%","%" +  query + "%", skip, limit }, new PubRowMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int count(String table,String wh, Object... query) {
+		Map<String, Object> r = jdbcOp.queryForMap(Sql.COUNT + table + wh,query);
 		System.out.println(r);
 		return Integer.valueOf(r.get("count(*)").toString());
 	}

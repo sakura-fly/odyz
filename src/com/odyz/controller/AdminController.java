@@ -176,7 +176,7 @@ public class AdminController {
 			PrintWriter out) {
 		out.print(ad.userList((pagenum - 1) * pagesize, pagesize));
 	}
-	
+
 	@RequestMapping(value = "/publist", method = POST)
 	public void pubList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
@@ -185,7 +185,22 @@ public class AdminController {
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
-		res.put("pageCount", Math.ceil(count/pagesize));
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
+	}
+
+	@RequestMapping(value = "/pubsearch", method = POST)
+	public void pubSearch(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			String kw, PrintWriter out) {
+		int count = ad.count(Sql.PUB, Sql.PUB_SEARCH_QUERY, "%" + kw + "%", "%" + kw + "%");
+		List<Pub> pubList = ad.pubSearch((pagenum - 1) * pagesize, pagesize, kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
 		res.put("pageNum", pagenum);
 		res.put("data", pubList.toString());
 		System.out.println(res);

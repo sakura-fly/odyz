@@ -78,4 +78,10 @@ public interface AdminDao {
 	
 	public int count(String table);
 	
+	public int count(String table,String wh, Object... query);
+	
+	
+	public List<Pub> pubSearch(int skip,int limit,String query);
+	
+	
 }
