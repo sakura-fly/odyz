@@ -9,6 +9,13 @@ public class Sql {
 	public static final String ADMIN_STU_LIST = "select * from stuValidate limit ?,?";
 	public static final String ADMIN_STU_DO = "update stuValidate set stuStat = ? where stuNumber = ?";
 	public static final String ADMIN_USER_LIST = "select * from OldDeal_user limit ?,?";
+	public static final String USER_SEARCH = "select * from OldDeal_user where uname like ?   limit ?,?";
+	public static final String USER_SEARCH_NM = "select * from OldDeal_user where uname like ? and memberLevel = 2 limit ?,?";
+	public static final String USER_SEARCH_NS = "select * from OldDeal_user where uname like ? and memberLevel = 1 limit ?,?";
+	public static final String USER_SEARCH_NO = "select * from OldDeal_user where uname like ? and memberLevel = 0 limit ?,?";
+	public static final String USER_LIST_NM = "select * from OldDeal_user where memberLevel = 2 limit ?,?";
+	public static final String USER_LIST_NS = "select * from OldDeal_user where memberLevel = 1 limit ?,?";
+	public static final String USER_LIST_NO = "select * from OldDeal_user where memberLevel = 0 limit ?,?";
 //	public static final String USER_LV = "where memberLevel = ?";
 	
 	
@@ -18,6 +25,10 @@ public class Sql {
 	public static final String COUNT = "select count(*) from ";
 	
 	public static final String PUB_SEARCH_QUERY = " where uname like ? or pname like ? ";
+	public static final String USER_SEARCH_QUERY = " where uname like ? ";
+	public static final String USER_SEARCH_QUERY_NM = " where uname like ? and memberLevel = 2";
+	public static final String USER_SEARCH_QUERY_NS = " where uname like ? and memberLevel = 1";
+	public static final String USER_SEARCH_QUERY_NO = " where uname like ? and memberLevel = 0";
 	public static final String LIST = "select * from ";
 
 	public static final String LIMIT = " limit ?,?";
@@ -31,4 +42,5 @@ public class Sql {
 //	public static final String USER_AND_SEARCH = " and uname like ? or pname like";
 //
 	public static final String PUB = " pub";
+	public static final String USER  = "OldDeal_user";
 }

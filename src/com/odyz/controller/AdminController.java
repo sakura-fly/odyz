@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.odyz.model.Pub;
+import com.odyz.model.UserModel;
 import com.resfmt.DefRes;
 import com.util.Sql;
 
@@ -174,7 +175,19 @@ public class AdminController {
 	@RequestMapping(value = "/userlist", method = POST)
 	public void userList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
-		out.print(ad.userList((pagenum - 1) * pagesize, pagesize));
+		int count = ad.count(Sql.USER);
+		
+		List<UserModel> ul = ad.userList((pagenum - 1) * pagesize, pagesize);
+		
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", ul.toString());
+		System.out.println(res);
+		out.print(res);
+		
 	}
 
 	@RequestMapping(value = "/publist", method = POST)
@@ -205,6 +218,150 @@ public class AdminController {
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
+	}
+	
+	@RequestMapping(value = "/usersearch", method = POST)
+	public void userSearch(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			String kw, PrintWriter out) {
+		System.out.println(kw);
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY,  "%" + kw + "%");
+		List<UserModel> pubList = ad.userSearch((pagenum - 1) * pagesize, pagesize, kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
+	}
+	
+	
+	@RequestMapping(value = "/usersearchnm", method = POST)
+	public void userSearchNm(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			String kw, PrintWriter out) {
+		System.out.println(kw);
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NM,  "%" + kw + "%");
+		List<UserModel> pubList = ad.userSearchNm((pagenum - 1) * pagesize, pagesize, kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
+	}
+	
+	@RequestMapping(value = "/usersearchns", method = POST)
+	public void userSearchNs(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			String kw, PrintWriter out) {
+		System.out.println(kw);
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NS,  "%" + kw + "%");
+		List<UserModel> pubList = ad.userSearchNs((pagenum - 1) * pagesize, pagesize, kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
+	}
+	
+	@RequestMapping(value = "/usersearchno", method = POST)
+	public void userSearchNo(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			String kw, PrintWriter out) {
+		System.out.println(kw);
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NO,  "%" + kw + "%");
+		List<UserModel> pubList = ad.userSearchNo((pagenum - 1) * pagesize, pagesize, kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
+	}
+	
+	/**
+	 * 获取学生认证信息列表
+	 * 
+	 * @param pagenum
+	 *            要查询的页码 默认1
+	 * @param pagesize
+	 *            每一页显示数量 默认5
+	 * @param out
+	 */
+	@RequestMapping(value = "/userlistnm", method = POST)
+	public void userListNm(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			PrintWriter out) {
+		int count = ad.count(Sql.USER,Sql.USER_NM);
+		
+		List<UserModel> ul = ad.userListNm((pagenum - 1) * pagesize, pagesize);
+		
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", ul.toString());
+		System.out.println(res);
+		out.print(res);
+		
+	}
+	/**
+	 * 获取学生认证信息列表
+	 * 
+	 * @param pagenum
+	 *            要查询的页码 默认1
+	 * @param pagesize
+	 *            每一页显示数量 默认5
+	 * @param out
+	 */
+	@RequestMapping(value = "/userlistns", method = POST)
+	public void userListNs(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			PrintWriter out) {
+		int count = ad.count(Sql.USER,Sql.USER_NO_PUB);
+		
+		List<UserModel> ul = ad.userListNs((pagenum - 1) * pagesize, pagesize);
+		
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", ul.toString());
+		System.out.println(res);
+		out.print(res);
+		
+	}
+	/**
+	 * 获取学生认证信息列表
+	 * 
+	 * @param pagenum
+	 *            要查询的页码 默认1
+	 * @param pagesize
+	 *            每一页显示数量 默认5
+	 * @param out
+	 */
+	@RequestMapping(value = "/userlistno", method = POST)
+	public void userListNo(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			PrintWriter out) {
+		int count = ad.count(Sql.USER,Sql.USER_NO_SAY);
+		
+		List<UserModel> ul = ad.userListNo((pagenum - 1) * pagesize, pagesize);
+		
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", ul.toString());
+		System.out.println(res);
+		out.print(res);
+		
 	}
 
 }

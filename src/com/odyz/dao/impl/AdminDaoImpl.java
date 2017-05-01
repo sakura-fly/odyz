@@ -154,9 +154,87 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public int count(String table,String wh, Object... query) {
+		System.out.println(Sql.COUNT + table + wh);
 		Map<String, Object> r = jdbcOp.queryForMap(Sql.COUNT + table + wh,query);
 		System.out.println(r);
 		return Integer.valueOf(r.get("count(*)").toString());
+	}
+
+	@Override
+	public List<UserModel> userSearch(int skip, int limit, String query) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.USER_SEARCH, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {     
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<UserModel> userSearchNm(int skip, int limit, String query) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.USER_SEARCH_NM, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {     
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<UserModel> userListNm(int skip, int limit) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.USER_LIST_NM, new Object[] { skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<UserModel> userSearchNs(int skip, int limit, String query) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.USER_SEARCH_NS, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {     
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<UserModel> userListNs(int skip, int limit) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.USER_LIST_NS, new Object[] { skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<UserModel> userSearchNo(int skip, int limit, String query) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.USER_SEARCH_NO, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {     
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<UserModel> userListNo(int skip, int limit) {
+		List<UserModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.USER_LIST_NO, new Object[] { skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 }

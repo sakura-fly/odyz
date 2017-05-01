@@ -16,7 +16,10 @@ $('#product .pager').on('click','a',function(event){
 
 function loadUserByPage(pageNum){
     $.ajax({
-        url:"data/loaduser0.php?pageNum="+pageNum,
+        // url:"data/loaduser0.php?pageNum="+pageNum,
+         url: "admin/userlistno?pageNum="+pageNum,
+        type: "post",
+        dataType: 'json',
         data: {mname: sessionStorage['loginName']},
         success:function(pager){
             var html='';

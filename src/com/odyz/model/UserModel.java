@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 import net.sf.json.JSONObject;
 
+
 public class UserModel {
 	
 	
@@ -68,6 +69,25 @@ public class UserModel {
 	 * 头像图片
 	 */
 	private String headImg;
+	
+	private String otherCode;
+
+	public UserModel(int uid, String uname, String uwd, String corfirmupwd, String qQ, String safe, String answer,
+			int integral, int memberLevel, String headImg, String otherCode) {
+		super();
+		this.uid = uid;
+		this.uname = uname;
+		this.uwd = uwd;
+		this.corfirmupwd = corfirmupwd;
+		QQ = qQ;
+		this.safe = safe;
+		this.answer = answer;
+		this.integral = integral;
+		this.memberLevel = memberLevel;
+		this.headImg = headImg;
+		this.otherCode = otherCode;
+	}
+
 
 	public int getUid() {
 		return uid;
@@ -151,19 +171,30 @@ public class UserModel {
 
 	
 	
+	public String getOtherCode() {
+		return otherCode;
+	}
+
+
+	public void setOtherCode(String otherCode) {
+		this.otherCode = otherCode;
+	}
+
+
 	@Override
 	public String toString() {
 		JSONObject r = new JSONObject();
 		r.put("uid", uid);
 		r.put("uname", uname);
-		r.put("upwd", uwd);
-		r.put("corfirmupwd", corfirmupwd);
-		r.put("QQ", QQ);
-		r.put("safe", safe);
-		r.put("answer", answer);
+//		r.put("upwd", uwd);
+//		r.put("corfirmupwd", corfirmupwd);
+//		r.put("QQ", QQ);
+//		r.put("safe", safe);
+//		r.put("answer", answer);
 		r.put("integral", integral);
 		r.put("memberLevel", memberLevel);
-		r.put("memberLevel", headImg);
+		r.put("otherCode", otherCode);      
+//		r.put("headImg", headImg);
 		return r.toString();
 	}
 
@@ -245,6 +276,24 @@ public class UserModel {
 			return false;
 		return true;
 	}
+
+
+//	@Override
+//	public String toString() {
+//		StringBuilder builder = new StringBuilder();
+//		builder.append("{\"uid\":\"");
+//		builder.append(uid);
+//		builder.append("\",\" uname\":\"");
+//		builder.append(uname);
+//		builder.append("\",\" integral\":\"");
+//		builder.append(integral);
+//		builder.append("\",\" memberLevel\":\"");
+//		builder.append(memberLevel);
+//		builder.append("\",\" otherCode\":\"");
+//		builder.append(otherCode);
+//		builder.append("\"}");
+//		return builder.toString();
+//	}
 	
 	
 }

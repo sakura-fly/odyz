@@ -17,7 +17,10 @@ $("#user .form1").on('click','#search-btn',function(){
 
 function searchLoad(pageNum,kw){
     $.ajax({
-        url:"data/userSearch1.php?pageNum="+pageNum+"&kw="+kw,
+        // url:"data/userSearch1.php?pageNum="+pageNum+"&kw="+kw,
+         url:"admin/usersearchns?pageNum="+pageNum+"&kw="+kw,
+        type: 'POST',
+        dataType:'json',
         data: {mname: sessionStorage['loginName']},
         success:function(pager){
             var html='';
