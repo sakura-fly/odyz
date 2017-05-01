@@ -70,9 +70,9 @@ public class AdminModel {
 	@Override
 	public String toString() {
 		JSONObject adminj = new JSONObject();
-		adminj.put("id", this.id);
-		adminj.put("userName", this.userName);
-		adminj.put("pwd", this.pwd);
+		adminj.put("mid", this.id);
+		adminj.put("mname", this.userName);
+//		adminj.put("pwd", this.pwd);
 		return adminj.toString();
 	}
 	

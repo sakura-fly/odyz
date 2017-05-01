@@ -15,7 +15,10 @@ $('#stuvalidate .pager').on('click','a',function(event){
 
 function loadStuvalidateByPage(pageNum){
     $.ajax({
-        url:"data/loadstuvalidate.php?pageNum="+pageNum,
+        // url:"data/loadstuvalidate.php?pageNum="+pageNum,
+        url:"admin/stulist?pageNum="+pageNum,
+        type:"POST",
+        dataType:'json',
         data: {mname: sessionStorage['loginName']},
         success:function(pager){
             var html='';

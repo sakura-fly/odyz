@@ -16,14 +16,13 @@ public class Sql {
 	public static final String USER_LIST_NM = "select * from OldDeal_user where memberLevel = 2 limit ?,?";
 	public static final String USER_LIST_NS = "select * from OldDeal_user where memberLevel = 1 limit ?,?";
 	public static final String USER_LIST_NO = "select * from OldDeal_user where memberLevel = 0 limit ?,?";
-//	public static final String USER_LV = "where memberLevel = ?";
-	
-	
+	// public static final String USER_LV = "where memberLevel = ?";
+
 	public static final String PUB_LIIST = "select * from pub limit ?,?";
 	public static final String PUB_SEARCH = "select * from pub where uname like ? or pname like ?  limit ?,?";
 
 	public static final String COUNT = "select count(*) from ";
-	
+
 	public static final String PUB_SEARCH_QUERY = " where uname like ? or pname like ? ";
 	public static final String USER_SEARCH_QUERY = " where uname like ? ";
 	public static final String USER_SEARCH_QUERY_NM = " where uname like ? and memberLevel = 2";
@@ -32,15 +31,26 @@ public class Sql {
 	public static final String LIST = "select * from ";
 
 	public static final String LIMIT = " limit ?,?";
+
+	public static final String STU_SEARCH = "select * from stuValidate where stuSchool LIKE ? OR stuCollege LIKE ? OR stuNumber LIKE ? OR stuName LIKE ? limit ?,?";
+	public static final String STU_SEARCH_QUERY = " where stuSchool LIKE ? OR stuCollege LIKE ? OR stuNumber LIKE ? OR stuName LIKE ? ";
+	
+	public static final String ADMIN_LIST = "select * from manager limit ?,?";
+	public static final String ADMIN_LIST_SEATCH = "select *from manager where mname LIKE ? limit ?,?";
+	public static final String ADMIN_LIST_SEATCH_QUERY = " where mname LIKE ? ";
 //
+	
 //	
 //	//不同的等级
 	public static final String USER_NM = " where memberLevel = 2";
 	public static final String USER_NO_PUB = " where memberLevel = 1";
 	public static final String USER_NO_SAY = " where memberLevel = 0";
-//	
-//	public static final String USER_AND_SEARCH = " and uname like ? or pname like";
-//
+	//
+	// public static final String USER_AND_SEARCH = " and uname like ? or pname
+	// like";
+	//
 	public static final String PUB = " pub";
-	public static final String USER  = "OldDeal_user";
+	public static final String USER = "OldDeal_user";
+	public static final String STU = "stuValidate";
+	public static final String ADMIN = "manager";
 }

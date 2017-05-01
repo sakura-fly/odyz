@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.odyz.model.Pub;
+import com.odyz.model.StuValidate;
 import com.odyz.model.UserModel;
 import com.resfmt.DefRes;
 import com.util.Sql;
@@ -141,7 +142,43 @@ public class AdminController {
 	@RequestMapping(value = "/stulist", method = POST)
 	public void studentsList(@RequestParam(defaultValue = "1") int pagenum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
-		out.print(ad.studentList((pagenum - 1) * pagesize, pagesize));
+		int count = ad.count(Sql.STU);
+		List<StuValidate> stul = ad.studentList((pagenum - 1) * pagesize, pagesize);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", stul.toString());
+		System.out.println(res);
+		out.print(res);
+	}
+	
+	
+	
+	/**
+	 * 获取学生认证信息列表查询
+	 * 
+	 * @param pagenum
+	 *            要查询的页码 默认1
+	 * @param pagesize
+	 *            每一页显示数量 默认5
+	 * @param out
+	 */
+	@RequestMapping(value = "/stusearch", method = POST)
+	public void studentsSearch(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out,String kw) {
+		int count = ad.count(Sql.STU,Sql.STU_SEARCH_QUERY,"%" + kw + "%","%" + kw + "%","%" + kw + "%","%" + kw + "%");
+		System.out.println(kw);
+		List<StuValidate> stul = ad.stuSearch((pagenum - 1) * pagesize, pagesize,kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", stul.toString());
+		System.out.println(res);
+		out.print(res);
 	}
 
 	/**
@@ -350,9 +387,7 @@ public class AdminController {
 	public void userListNo(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
 		int count = ad.count(Sql.USER,Sql.USER_NO_SAY);
-		
 		List<UserModel> ul = ad.userListNo((pagenum - 1) * pagesize, pagesize);
-		
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
@@ -362,6 +397,50 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 		
+	}
+	
+	
+	/**
+	 * 获取学生认证信息列表
+	 * 
+	 * @param pagenum
+	 *            要查询的页码 默认1
+	 * @param pagesize
+	 *            每一页显示数量 默认5
+	 * @param out
+	 */
+	@RequestMapping(value = "/adminlist", method = POST)
+	public void adminList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			PrintWriter out) {
+		int count = ad.count(Sql.ADMIN);
+		List<AdminModel> ul = ad.adminList((pagenum - 1) * pagesize, pagesize);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", ul.toString());
+		System.out.println(res);
+		out.print(res);
+		
+	}
+	
+	
+	
+	@RequestMapping(value = "/adminsearch", method = POST)
+	public void adminSearch(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+			String kw, PrintWriter out) {
+		System.out.println(kw);
+		int count = ad.count(Sql.ADMIN, Sql.ADMIN_LIST_SEATCH_QUERY,  "%" + kw + "%");
+		List<AdminModel> pubList = ad.adminSearch((pagenum - 1) * pagesize, pagesize, kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
 	}
 
 }

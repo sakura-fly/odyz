@@ -143,5 +143,11 @@ public interface AdminDao {
 	 * @return
 	 */
 	public List<UserModel> userListNo(int skip, int limit);
+	
+	public List<StuValidate> stuSearch(int skip, int limit, String query);
+	
+	public List<AdminModel> adminList(int skip, int limit);
+	
+	public List<AdminModel> adminSearch(int skip, int limit,String query);
 
 }

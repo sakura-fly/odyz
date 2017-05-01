@@ -15,7 +15,10 @@ $('#product .pager').on('click','a',function(event){
 
 function loadManagerByPage(pageNum){
     $.ajax({
-        url:"data/loadmanager.php?pageNum="+pageNum,
+        // url:"data/loadmanager.php?pageNum="+pageNum,
+        url:"admin/adminlist?pageNum="+pageNum,
+        type:"POST",
+        dataType:"json",
         data: {mname: sessionStorage['loginName']},
         success:function(pager){
             var html='';

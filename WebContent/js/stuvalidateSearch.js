@@ -17,7 +17,10 @@ $("#stuvalidate .form1").on('click','#search-btn',function(){
 
 function searchLoad(pageNum,kw){
     $.ajax({
-        url:"data/stuvalidateSearch.php?pageNum="+pageNum+"&kw="+kw,
+        // url:"data/stuvalidateSearch.php?pageNum="+pageNum+"&kw="+kw,
+         url:"admin/stusearch?pageNum="+pageNum+"&kw="+kw,
+        type:"POST",
+        dataType:'json',
         data: {mname: sessionStorage['loginName']},
         success:function(pager){
             var html='';

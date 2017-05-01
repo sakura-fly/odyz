@@ -138,14 +138,13 @@ public class AdminDaoImpl implements AdminDao {
 		System.out.println(r);
 		return Integer.valueOf(r.get("count(*)").toString());
 	}
-	
-	
 
 	@Override
 	public List<Pub> pubSearch(int skip, int limit, String query) {
 		List<Pub> res = new ArrayList<>();
 		try {
-			res = jdbcOp.query(Sql.PUB_SEARCH, new Object[] { "%" + query + "%","%" +  query + "%", skip, limit }, new PubRowMapper());
+			res = jdbcOp.query(Sql.PUB_SEARCH, new Object[] { "%" + query + "%", "%" + query + "%", skip, limit },
+					new PubRowMapper());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -153,9 +152,9 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int count(String table,String wh, Object... query) {
+	public int count(String table, String wh, Object... query) {
 		System.out.println(Sql.COUNT + table + wh);
-		Map<String, Object> r = jdbcOp.queryForMap(Sql.COUNT + table + wh,query);
+		Map<String, Object> r = jdbcOp.queryForMap(Sql.COUNT + table + wh, query);
 		System.out.println(r);
 		return Integer.valueOf(r.get("count(*)").toString());
 	}
@@ -164,8 +163,8 @@ public class AdminDaoImpl implements AdminDao {
 	public List<UserModel> userSearch(int skip, int limit, String query) {
 		List<UserModel> res = new ArrayList<>();
 		try {
-			res = jdbcOp.query(Sql.USER_SEARCH, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
-		} catch (Exception e) {     
+			res = jdbcOp.query(Sql.USER_SEARCH, new Object[] { "%" + query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return res;
@@ -175,8 +174,8 @@ public class AdminDaoImpl implements AdminDao {
 	public List<UserModel> userSearchNm(int skip, int limit, String query) {
 		List<UserModel> res = new ArrayList<>();
 		try {
-			res = jdbcOp.query(Sql.USER_SEARCH_NM, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
-		} catch (Exception e) {     
+			res = jdbcOp.query(Sql.USER_SEARCH_NM, new Object[] { "%" + query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return res;
@@ -197,8 +196,8 @@ public class AdminDaoImpl implements AdminDao {
 	public List<UserModel> userSearchNs(int skip, int limit, String query) {
 		List<UserModel> res = new ArrayList<>();
 		try {
-			res = jdbcOp.query(Sql.USER_SEARCH_NS, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
-		} catch (Exception e) {     
+			res = jdbcOp.query(Sql.USER_SEARCH_NS, new Object[] { "%" + query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return res;
@@ -219,8 +218,8 @@ public class AdminDaoImpl implements AdminDao {
 	public List<UserModel> userSearchNo(int skip, int limit, String query) {
 		List<UserModel> res = new ArrayList<>();
 		try {
-			res = jdbcOp.query(Sql.USER_SEARCH_NO, new Object[] { "%" +  query + "%", skip, limit }, new UserRowMapp());
-		} catch (Exception e) {     
+			res = jdbcOp.query(Sql.USER_SEARCH_NO, new Object[] { "%" + query + "%", skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return res;
@@ -231,6 +230,41 @@ public class AdminDaoImpl implements AdminDao {
 		List<UserModel> res = new ArrayList<>();
 		try {
 			res = jdbcOp.query(Sql.USER_LIST_NO, new Object[] { skip, limit }, new UserRowMapp());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<StuValidate> stuSearch(int skip, int limit, String kw) {
+		List<StuValidate> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.STU_SEARCH,
+					new Object[] { "%" + kw + "%", "%" + kw + "%", "%" + kw + "%", "%" + kw + "%", skip, limit },
+					new StudentRowMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<AdminModel> adminList(int skip, int limit) {
+		List<AdminModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.ADMIN_LIST, new Object[] { skip, limit }, new AdminRowMapper());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<AdminModel> adminSearch(int skip, int limit, String kw) {
+		List<AdminModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.ADMIN_LIST_SEATCH, new Object[] { "%" + kw + "%", skip, limit }, new AdminRowMapper());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

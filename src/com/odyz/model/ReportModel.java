@@ -1,6 +1,5 @@
 package com.odyz.model;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 
 
@@ -19,7 +18,23 @@ public class ReportModel {
 	private String reason;
 	private Timestamp tipTime;
 	private int tipStatus;
+	private String cancel;
 	
+	public ReportModel(int rid, String tipName, String uname, String pname, String reason, Timestamp tipTime,
+			int tipStatus, String cancel) {
+		super();
+		this.rid = rid;
+		this.tipName = tipName;
+		this.uname = uname;
+		this.pname = pname;
+		this.reason = reason;
+		this.tipTime = tipTime;
+		this.tipStatus = tipStatus;
+		this.cancel = cancel;
+	}
+
+
+
 	public ReportModel() {
 		// TODO Auto-generated constructor stub
 	}
@@ -116,24 +131,38 @@ public class ReportModel {
 
 
 
+	public String getCancel() {
+		return cancel;
+	}
+
+
+
+	public void setCancel(String cancel) {
+		this.cancel = cancel;
+	}
+
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("{\"rid\":");
+		builder.append("{\"rid\":\"");
 		builder.append(rid);
-		builder.append(",\"tipName\":\"");
+		builder.append("\",\" tipName\":\"");
 		builder.append(tipName);
-		builder.append("\",\"uname\":\"");
+		builder.append("\",\" uname\":\"");
 		builder.append(uname);
-		builder.append("\",\"pname\":\"");
+		builder.append("\",\" pname\":\"");
 		builder.append(pname);
-		builder.append("\",\"reason\":\"");
+		builder.append("\",\" reason\":\"");
 		builder.append(reason);
-		builder.append("\",\"tipTime\":\"");
-		builder.append(tipTime.toString());
-		builder.append("\",\"tipStatus\":");
+		builder.append("\",\" tipTime\":\"");
+		builder.append(tipTime);
+		builder.append("\",\" tipStatus\":\"");
 		builder.append(tipStatus);
-		builder.append("}  ");
+		builder.append("\",\" cancel\":\"");
+		builder.append(cancel);
+		builder.append("\"}");
 		return builder.toString();
 	}
 
