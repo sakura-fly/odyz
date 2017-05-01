@@ -442,5 +442,16 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
+	
+	@RequestMapping(value = "/pubdel", method = POST)	
+	public void pubDel(int pid, PrintWriter out){
+		int r = ad.pubDel(pid);
+		if(r>0){
+			out.print("succ");
+		}
+		else {
+			out.print("err");
+		}
+	}
 
 }

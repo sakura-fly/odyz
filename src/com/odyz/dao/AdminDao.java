@@ -149,5 +149,8 @@ public interface AdminDao {
 	public List<AdminModel> adminList(int skip, int limit);
 	
 	public List<AdminModel> adminSearch(int skip, int limit,String query);
+	
+	
+	public int pubDel(int id);
 
 }

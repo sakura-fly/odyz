@@ -40,6 +40,8 @@ public class Sql {
 	public static final String ADMIN_LIST_SEATCH_QUERY = " where mname LIKE ? ";
 //
 	
+	public static final String PUB_DEL_BY_PID = "DELETE FROM pub where pid=?";
+	
 //	
 //	//不同的等级
 	public static final String USER_NM = " where memberLevel = 2";

@@ -82,7 +82,8 @@ function loadProductByPage(pageNum){
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/deleteProduct.php',
+                    // url: 'data/deleteProduct.php',
+                    url:"admin/pubdel",
                     data: {mname: sessionStorage['loginName'],pid:pid},
                     success: function(obj){
                         alert("商品删除成功");

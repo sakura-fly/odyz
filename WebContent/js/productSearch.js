@@ -81,7 +81,8 @@ function searchLoad(pageNum, kw) {
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/deleteProduct.php',
+                    // url: 'data/deleteProduct.php',
+                     url:"admin/pubdel",
                     data: {
                         mname: sessionStorage['loginName'],
                         pid: pid
