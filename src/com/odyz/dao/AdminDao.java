@@ -60,7 +60,7 @@ public interface AdminDao {
 	 *            举报信息ID
 	 * @return
 	 */
-	public int reportRes(int id);
+	public int reportRes(int id,String cancle);
 
 	/**
 	 * 获取学生认证信息列表
@@ -162,5 +162,6 @@ public interface AdminDao {
 	
 	public int stuPass(int userId);
 	
+	public List<ReportModel> reportSearch(int skip, int limit,String query);
 
 }

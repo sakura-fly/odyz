@@ -79,10 +79,10 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int reportRes(int id) {
+	public int reportRes(int id,String cancle) {
 		int res = -1;
 		try {
-			res = jdbcOp.update(Sql.ADMIN_REPORT_DO, id);
+			res = jdbcOp.update(Sql.ADMIN_REPORT_DO, cancle, id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -328,6 +328,18 @@ public class AdminDaoImpl implements AdminDao {
 		int res = -1;
 		try {
 			res = jdbcOp.update(Sql.STU_PASS, userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public List<ReportModel> reportSearch(int skip, int limit, String kw) {
+		List<ReportModel> res = new ArrayList<>();
+		try {
+			res = jdbcOp.query(Sql.ADMIN_REPORT_LIST_SEARCH, new Object[] { "%" + kw + "%", skip, limit },
+					new ReportRowMapper());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

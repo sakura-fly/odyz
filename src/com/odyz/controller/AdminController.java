@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.odyz.dao.AdminDao;
 import com.odyz.model.AdminModel;
 import com.odyz.model.Pub;
+import com.odyz.model.ReportModel;
 import com.odyz.model.StuValidate;
 import com.odyz.model.UserModel;
 import com.resfmt.DefRes;
@@ -128,7 +129,16 @@ public class AdminController {
 	@RequestMapping(value = "/reportlist", method = POST)
 	public void reportlist(@RequestParam(defaultValue = "1") int pagenum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
-		out.print(ad.reportList((pagenum - 1) * pagesize, pagesize));
+		int count = ad.count(Sql.REPORT);
+		List<ReportModel> reportl = ad.reportList((pagenum - 1) * pagesize, pagesize);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", reportl.toString());
+		System.out.println(res);
+		out.print(res);
 	}
 
 	/**
@@ -140,8 +150,8 @@ public class AdminController {
 	 *            管理员id
 	 */
 	@RequestMapping(value = "/reportres", method = POST)
-	public void doReport(int id, int uid, PrintWriter out) {
-		int res = ad.reportRes(id);
+	public void doReport(int rid, String cancel, PrintWriter out) {
+		int res = ad.reportRes(rid,cancel);
 		if (res < 0) {
 			out.print(DefRes.dr(res, "defeated"));
 		} else {
@@ -497,6 +507,22 @@ public class AdminController {
 		} else {
 			out.print("err");
 		}
+	}
+	
+	@RequestMapping(value = "/reportsearch", method = POST)
+	public void reportSearch(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
+		System.out.println(kw);
+		int count = ad.count(Sql.REPORT, Sql.ADMIN_REPORT_LIST_SEARCH_QUERY, "%" + kw + "%");
+		List<ReportModel> pubList = ad.reportSearch((pagenum - 1) * pagesize, pagesize, kw);
+		JSONObject res = new JSONObject();
+		res.put("recordCount", count);
+		res.put("pageSize", pagesize);
+		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
+		res.put("pageNum", pagenum);
+		res.put("data", pubList.toString());
+		System.out.println(res);
+		out.print(res);
 	}
 
 }

@@ -6,7 +6,8 @@ public class Sql {
 	public static final String ADMIN_CLOSESAY = "update OldDeal_user set memberLevel = 1 where uname = ?";
 	public static final String ADMIN_USER_NM = "update OldDeal_user set memberLevel = 2 where uname = ?";
 	public static final String ADMIN_REPORT_LIST = "select * from report   limit ?,?";
-	public static final String ADMIN_REPORT_DO = "update report set tipstatus = 1 where id = ?";
+	public static final String ADMIN_REPORT_LIST_SEARCH = "select * from report where tipName LIKE ?  limit ?,?";
+	public static final String ADMIN_REPORT_DO = "update report set tipstatus = 0,cancel=? where rid = ?";
 	public static final String ADMIN_STU_LIST = "select * from stuValidate limit ?,?";
 	public static final String ADMIN_STU_DO = "update stuValidate set stuStat = ? where stuNumber = ?";
 	public static final String ADMIN_USER_LIST = "select * from OldDeal_user limit ?,?";
@@ -31,6 +32,7 @@ public class Sql {
 	public static final String USER_SEARCH_QUERY_NM = " where uname like ? and memberLevel = 2";
 	public static final String USER_SEARCH_QUERY_NS = " where uname like ? and memberLevel = 1";
 	public static final String USER_SEARCH_QUERY_NO = " where uname like ? and memberLevel = 0";
+	public static final String ADMIN_REPORT_LIST_SEARCH_QUERY = " where tipName LIKE ?  ";
 	public static final String LIST = "select * from ";  
 
 	public static final String LIMIT = " limit ?,?";
@@ -59,4 +61,5 @@ public class Sql {
 	public static final String USER = "OldDeal_user";
 	public static final String STU = "stuValidate";
 	public static final String ADMIN = "manager";
+	public static final String REPORT = "report";
 }
