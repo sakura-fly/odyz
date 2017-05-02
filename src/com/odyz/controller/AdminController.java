@@ -120,22 +120,22 @@ public class AdminController {
 	/**
 	 * 获取举报列表
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/reportlist", method = POST)
-	public void reportlist(@RequestParam(defaultValue = "1") int pagenum,
+	public void reportlist(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
 		int count = ad.count(Sql.REPORT);
-		List<ReportModel> reportl = ad.reportList((pagenum - 1) * pagesize, pagesize);
+		List<ReportModel> reportl = ad.reportList((pageNum - 1) * pagesize, pagesize);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", reportl.toString());
 		System.out.println(res);
 		out.print(res);
@@ -162,22 +162,22 @@ public class AdminController {
 	/**
 	 * 获取学生认证信息列表
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/stulist", method = POST)
-	public void studentsList(@RequestParam(defaultValue = "1") int pagenum,
+	public void studentsList(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
 		int count = ad.count(Sql.STU);
-		List<StuValidate> stul = ad.studentList((pagenum - 1) * pagesize, pagesize);
+		List<StuValidate> stul = ad.studentList((pageNum - 1) * pagesize, pagesize);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", stul.toString());
 		System.out.println(res);
 		out.print(res);
@@ -186,24 +186,24 @@ public class AdminController {
 	/**
 	 * 获取学生认证信息列表查询
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/stusearch", method = POST)
-	public void studentsSearch(@RequestParam(defaultValue = "1") int pagenum,
+	public void studentsSearch(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out, String kw) {
 		int count = ad.count(Sql.STU, Sql.STU_SEARCH_QUERY, "%" + kw + "%", "%" + kw + "%", "%" + kw + "%",
 				"%" + kw + "%");
 		System.out.println(kw);
-		List<StuValidate> stul = ad.stuSearch((pagenum - 1) * pagesize, pagesize, kw);
+		List<StuValidate> stul = ad.stuSearch((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", stul.toString());
 		System.out.println(res);
 		out.print(res);
@@ -231,24 +231,24 @@ public class AdminController {
 	/**
 	 * 获取学生认证信息列表
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/userlist", method = POST)
-	public void userList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+	public void userList(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
 		int count = ad.count(Sql.USER);
 
-		List<UserModel> ul = ad.userList((pagenum - 1) * pagesize, pagesize);
+		List<UserModel> ul = ad.userList((pageNum - 1) * pagesize, pagesize);
 
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
@@ -256,94 +256,94 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/publist", method = POST)
-	public void pubList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+	public void pubList(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
 		int count = ad.count(Sql.PUB);
-		List<Pub> pubList = ad.pubList((pagenum - 1) * pagesize, pagesize);
+		List<Pub> pubList = ad.pubList((pageNum - 1) * pagesize, pagesize);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
 	}
 
 	@RequestMapping(value = "/pubsearch", method = POST)
-	public void pubSearch(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+	public void pubSearch(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pagesize,
 			String kw, PrintWriter out) {
 		int count = ad.count(Sql.PUB, Sql.PUB_SEARCH_QUERY, "%" + kw + "%", "%" + kw + "%");
-		List<Pub> pubList = ad.pubSearch((pagenum - 1) * pagesize, pagesize, kw);
+		List<Pub> pubList = ad.pubSearch((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
 	}
 
 	@RequestMapping(value = "/usersearch", method = POST)
-	public void userSearch(@RequestParam(defaultValue = "1") int pagenum,
+	public void userSearch(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
 		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY, "%" + kw + "%");
-		List<UserModel> pubList = ad.userSearch((pagenum - 1) * pagesize, pagesize, kw);
+		List<UserModel> pubList = ad.userSearch((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
 	}
 
 	@RequestMapping(value = "/usersearchnm", method = POST)
-	public void userSearchNm(@RequestParam(defaultValue = "1") int pagenum,
+	public void userSearchNm(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
 		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NM, "%" + kw + "%");
-		List<UserModel> pubList = ad.userSearchNm((pagenum - 1) * pagesize, pagesize, kw);
+		List<UserModel> pubList = ad.userSearchNm((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
 	}
 
 	@RequestMapping(value = "/usersearchns", method = POST)
-	public void userSearchNs(@RequestParam(defaultValue = "1") int pagenum,
+	public void userSearchNs(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
 		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NS, "%" + kw + "%");
-		List<UserModel> pubList = ad.userSearchNs((pagenum - 1) * pagesize, pagesize, kw);
+		List<UserModel> pubList = ad.userSearchNs((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
 	}
 
 	@RequestMapping(value = "/usersearchno", method = POST)
-	public void userSearchNo(@RequestParam(defaultValue = "1") int pagenum,
+	public void userSearchNo(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
 		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NO, "%" + kw + "%");
-		List<UserModel> pubList = ad.userSearchNo((pagenum - 1) * pagesize, pagesize, kw);
+		List<UserModel> pubList = ad.userSearchNo((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
@@ -352,24 +352,24 @@ public class AdminController {
 	/**
 	 * 获取学生认证信息列表
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/userlistnm", method = POST)
-	public void userListNm(@RequestParam(defaultValue = "1") int pagenum,
+	public void userListNm(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
 		int count = ad.count(Sql.USER, Sql.USER_NM);
 
-		List<UserModel> ul = ad.userListNm((pagenum - 1) * pagesize, pagesize);
+		List<UserModel> ul = ad.userListNm((pageNum - 1) * pagesize, pagesize);
 
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
@@ -379,24 +379,24 @@ public class AdminController {
 	/**
 	 * 获取学生认证信息列表
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/userlistns", method = POST)
-	public void userListNs(@RequestParam(defaultValue = "1") int pagenum,
+	public void userListNs(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
 		int count = ad.count(Sql.USER, Sql.USER_NO_PUB);
 
-		List<UserModel> ul = ad.userListNs((pagenum - 1) * pagesize, pagesize);
+		List<UserModel> ul = ad.userListNs((pageNum - 1) * pagesize, pagesize);
 
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
@@ -406,22 +406,22 @@ public class AdminController {
 	/**
 	 * 获取学生认证信息列表
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/userlistno", method = POST)
-	public void userListNo(@RequestParam(defaultValue = "1") int pagenum,
+	public void userListNo(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
 		int count = ad.count(Sql.USER, Sql.USER_NO_SAY);
-		List<UserModel> ul = ad.userListNo((pagenum - 1) * pagesize, pagesize);
+		List<UserModel> ul = ad.userListNo((pageNum - 1) * pagesize, pagesize);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
@@ -431,22 +431,22 @@ public class AdminController {
 	/**
 	 * 获取学生认证信息列表
 	 * 
-	 * @param pagenum
+	 * @param pageNum
 	 *            要查询的页码 默认1
 	 * @param pagesize
 	 *            每一页显示数量 默认5
 	 * @param out
 	 */
 	@RequestMapping(value = "/adminlist", method = POST)
-	public void adminList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
+	public void adminList(@RequestParam(defaultValue = "1") int pageNum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
 		int count = ad.count(Sql.ADMIN);
-		List<AdminModel> ul = ad.adminList((pagenum - 1) * pagesize, pagesize);
+		List<AdminModel> ul = ad.adminList((pageNum - 1) * pagesize, pagesize);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
@@ -454,16 +454,16 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/adminsearch", method = POST)
-	public void adminSearch(@RequestParam(defaultValue = "1") int pagenum,
+	public void adminSearch(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
 		int count = ad.count(Sql.ADMIN, Sql.ADMIN_LIST_SEATCH_QUERY, "%" + kw + "%");
-		List<AdminModel> pubList = ad.adminSearch((pagenum - 1) * pagesize, pagesize, kw);
+		List<AdminModel> pubList = ad.adminSearch((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);
@@ -510,16 +510,16 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/reportsearch", method = POST)
-	public void reportSearch(@RequestParam(defaultValue = "1") int pagenum,
+	public void reportSearch(@RequestParam(defaultValue = "1") int pageNum,
 			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
 		int count = ad.count(Sql.REPORT, Sql.ADMIN_REPORT_LIST_SEARCH_QUERY, "%" + kw + "%");
-		List<ReportModel> pubList = ad.reportSearch((pagenum - 1) * pagesize, pagesize, kw);
+		List<ReportModel> pubList = ad.reportSearch((pageNum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
 		res.put("pageCount", Math.ceil((double) count / (double) pagesize));
-		res.put("pageNum", pagenum);
+		res.put("pageNum", pageNum);
 		res.put("data", pubList.toString());
 		System.out.println(res);
 		out.print(res);

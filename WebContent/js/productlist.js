@@ -19,11 +19,12 @@ function loadProductByPage(pageNum){
     
     $.ajax({
         // url:"data/loadproduct.php?pageNum="+pageNum,
-        url:"admin/publist",
+        url:"admin/publist?pageNum="+pageNum,
         data: {mname: sessionStorage['loginName']},
         type: 'POST',
         dataType:'json',
         success:function(pager){
+            console.log('pager.pageNum=' + pager.pageNum);
             var html='';
             console.log("pager.data=" + pager.data);
             console.log("pager" + pager);

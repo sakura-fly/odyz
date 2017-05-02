@@ -6,7 +6,7 @@ $(function(){
 });
 
 /**功能点5：用户点击分页条中的页号时，实现数据的异步加载**/
-$('#product .pager').on('click','a',function(event){
+$('#user .pager').on('click','a',function(event){
     event.preventDefault(); //阻止跳转行为
     //获取要跳转的页号
     var pageNum = $(this).attr('href');
