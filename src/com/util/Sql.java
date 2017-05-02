@@ -17,6 +17,8 @@ public class Sql {
 	public static final String USER_LIST_NM = "select * from OldDeal_user where memberLevel = 2 limit ?,?";
 	public static final String USER_LIST_NS = "select * from OldDeal_user where memberLevel = 1 limit ?,?";
 	public static final String USER_LIST_NO = "select * from OldDeal_user where memberLevel = 0 limit ?,?";
+	public static final String STU_FAIL = "update stuValidate set verifyStatus=2 where userId=?";
+	public static final String STU_PASS = "update stuValidate set verifyStatus=0 where userId=?";
 	// public static final String USER_LV = "where memberLevel = ?";
 
 	public static final String PUB_LIIST = "select * from pub limit ?,?";
@@ -29,7 +31,7 @@ public class Sql {
 	public static final String USER_SEARCH_QUERY_NM = " where uname like ? and memberLevel = 2";
 	public static final String USER_SEARCH_QUERY_NS = " where uname like ? and memberLevel = 1";
 	public static final String USER_SEARCH_QUERY_NO = " where uname like ? and memberLevel = 0";
-	public static final String LIST = "select * from ";
+	public static final String LIST = "select * from ";  
 
 	public static final String LIMIT = " limit ?,?";
 

@@ -84,7 +84,8 @@ function loadStuvalidateByPage(pageNum){
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/passStuvalidate.php',
+                    // url: 'data/passStuvalidate.php',
+                    url:"admin/stupass",
                     data: {mname: sessionStorage['loginName'],userId:userId},
                     success: function(obj){
                         alert("认证通过");
@@ -99,7 +100,8 @@ function loadStuvalidateByPage(pageNum){
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/failStuvalidate.php',
+                    // url: 'data/failStuvalidate.php',
+                    url:"admin/stufail",
                     data: {mname: sessionStorage['loginName'],userId:userId},
                     success: function(obj){
                         alert("认证未通过");

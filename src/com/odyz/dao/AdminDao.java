@@ -158,5 +158,9 @@ public interface AdminDao {
 	
 	public int userNm(String uname);
 	
+	public int stuFail(int userId);
+	
+	public int stuPass(int userId);
+	
 
 }

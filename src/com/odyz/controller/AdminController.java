@@ -478,5 +478,25 @@ public class AdminController {
 			out.print("err");
 		}
 	}
+	
+	@RequestMapping(value = "/stupass", method = POST)
+	public void stuPass(int userId, PrintWriter out) {
+		int r = ad.stuPass(userId);
+		if (r > 0) {
+			out.print("succ");
+		} else {
+			out.print("err");
+		}
+	}
+	
+	@RequestMapping(value = "/stufail", method = POST)
+	public void stuFail(int userId, PrintWriter out) {
+		int r = ad.stuFail(userId);
+		if (r > 0) {
+			out.print("succ");
+		} else {
+			out.print("err");
+		}
+	}
 
 }

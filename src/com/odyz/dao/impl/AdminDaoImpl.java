@@ -312,4 +312,26 @@ public class AdminDaoImpl implements AdminDao {
 		return res;
 	}
 
+	@Override
+	public int stuFail(int userId) {
+		int res = -1;
+		try {
+			res = jdbcOp.update(Sql.STU_FAIL, userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int stuPass(int userId) {
+		int res = -1;
+		try {
+			res = jdbcOp.update(Sql.STU_PASS, userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
 }
