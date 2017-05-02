@@ -31,7 +31,7 @@ public interface AdminDao {
 	 *            被封号的会员id
 	 * @return
 	 */
-	public int closeUser(long uid);
+	public int closeUser(String uid);
 
 	/**
 	 * 禁止发布信息
@@ -40,7 +40,7 @@ public interface AdminDao {
 	 *            被禁止的用户的id
 	 * @return
 	 */
-	public int closeSay(long uid);
+	public int closeSay(String uid);
 
 	/**
 	 * 查询举报信息列表
@@ -155,6 +155,8 @@ public interface AdminDao {
 	
 	public int adminDel(int id);
 	
+	
+	public int userNm(String uname);
 	
 
 }

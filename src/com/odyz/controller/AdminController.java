@@ -69,8 +69,8 @@ public class AdminController {
 	 * @param out
 	 */
 	@RequestMapping(value = "/closeuser", method = POST)
-	public void closeuser(long uid, long aid, int lv, PrintWriter out) {
-		int res = ad.closeUser(uid);
+	public void closeuser(String uname, PrintWriter out) {
+		int res = ad.closeUser(uname);
 		if (res > 0) {
 			out.print(DefRes.dr(res, "succeed"));
 		} else {
@@ -88,8 +88,27 @@ public class AdminController {
 	 * @param out
 	 */
 	@RequestMapping(value = "/closesay", method = POST)
-	public void closesay(long uid, long aid, PrintWriter out) {
-		int res = ad.closeSay(uid);
+	public void closesay(String uname, PrintWriter out) {
+		int res = ad.closeSay(uname);
+		if (res > 0) {
+			out.print(DefRes.dr(res, "succeed"));
+		} else {
+			out.print(DefRes.dr(res, "defeated"));
+		}
+	}
+	
+	/**
+	 * 恢复正常
+	 * 
+	 * @param uid
+	 *            被禁止的会员id
+	 * @param aid
+	 *            管理员ID
+	 * @param out
+	 */
+	@RequestMapping(value = "/usernm", method = POST)
+	public void usernm(String uname, PrintWriter out) {
+		int res = ad.userNm(uname);
 		if (res > 0) {
 			out.print(DefRes.dr(res, "succeed"));
 		} else {
@@ -153,9 +172,7 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
-	
-	
-	
+
 	/**
 	 * 获取学生认证信息列表查询
 	 * 
@@ -167,10 +184,11 @@ public class AdminController {
 	 */
 	@RequestMapping(value = "/stusearch", method = POST)
 	public void studentsSearch(@RequestParam(defaultValue = "1") int pagenum,
-			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out,String kw) {
-		int count = ad.count(Sql.STU,Sql.STU_SEARCH_QUERY,"%" + kw + "%","%" + kw + "%","%" + kw + "%","%" + kw + "%");
+			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out, String kw) {
+		int count = ad.count(Sql.STU, Sql.STU_SEARCH_QUERY, "%" + kw + "%", "%" + kw + "%", "%" + kw + "%",
+				"%" + kw + "%");
 		System.out.println(kw);
-		List<StuValidate> stul = ad.stuSearch((pagenum - 1) * pagesize, pagesize,kw);
+		List<StuValidate> stul = ad.stuSearch((pagenum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
@@ -213,9 +231,9 @@ public class AdminController {
 	public void userList(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
 			PrintWriter out) {
 		int count = ad.count(Sql.USER);
-		
+
 		List<UserModel> ul = ad.userList((pagenum - 1) * pagesize, pagesize);
-		
+
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
@@ -224,7 +242,7 @@ public class AdminController {
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
-		
+
 	}
 
 	@RequestMapping(value = "/publist", method = POST)
@@ -256,12 +274,12 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
-	
+
 	@RequestMapping(value = "/usersearch", method = POST)
-	public void userSearch(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			String kw, PrintWriter out) {
+	public void userSearch(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
-		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY,  "%" + kw + "%");
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY, "%" + kw + "%");
 		List<UserModel> pubList = ad.userSearch((pagenum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
@@ -272,13 +290,12 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
-	
-	
+
 	@RequestMapping(value = "/usersearchnm", method = POST)
-	public void userSearchNm(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			String kw, PrintWriter out) {
+	public void userSearchNm(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
-		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NM,  "%" + kw + "%");
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NM, "%" + kw + "%");
 		List<UserModel> pubList = ad.userSearchNm((pagenum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
@@ -289,12 +306,12 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
-	
+
 	@RequestMapping(value = "/usersearchns", method = POST)
-	public void userSearchNs(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			String kw, PrintWriter out) {
+	public void userSearchNs(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
-		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NS,  "%" + kw + "%");
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NS, "%" + kw + "%");
 		List<UserModel> pubList = ad.userSearchNs((pagenum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
@@ -305,12 +322,12 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
-	
+
 	@RequestMapping(value = "/usersearchno", method = POST)
-	public void userSearchNo(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			String kw, PrintWriter out) {
+	public void userSearchNo(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
-		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NO,  "%" + kw + "%");
+		int count = ad.count(Sql.USER, Sql.USER_SEARCH_QUERY_NO, "%" + kw + "%");
 		List<UserModel> pubList = ad.userSearchNo((pagenum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
@@ -321,7 +338,7 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
-	
+
 	/**
 	 * 获取学生认证信息列表
 	 * 
@@ -332,12 +349,12 @@ public class AdminController {
 	 * @param out
 	 */
 	@RequestMapping(value = "/userlistnm", method = POST)
-	public void userListNm(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			PrintWriter out) {
-		int count = ad.count(Sql.USER,Sql.USER_NM);
-		
+	public void userListNm(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
+		int count = ad.count(Sql.USER, Sql.USER_NM);
+
 		List<UserModel> ul = ad.userListNm((pagenum - 1) * pagesize, pagesize);
-		
+
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
@@ -346,8 +363,9 @@ public class AdminController {
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
-		
+
 	}
+
 	/**
 	 * 获取学生认证信息列表
 	 * 
@@ -358,12 +376,12 @@ public class AdminController {
 	 * @param out
 	 */
 	@RequestMapping(value = "/userlistns", method = POST)
-	public void userListNs(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			PrintWriter out) {
-		int count = ad.count(Sql.USER,Sql.USER_NO_PUB);
-		
+	public void userListNs(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
+		int count = ad.count(Sql.USER, Sql.USER_NO_PUB);
+
 		List<UserModel> ul = ad.userListNs((pagenum - 1) * pagesize, pagesize);
-		
+
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
 		res.put("pageSize", pagesize);
@@ -372,8 +390,9 @@ public class AdminController {
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
-		
+
 	}
+
 	/**
 	 * 获取学生认证信息列表
 	 * 
@@ -384,9 +403,9 @@ public class AdminController {
 	 * @param out
 	 */
 	@RequestMapping(value = "/userlistno", method = POST)
-	public void userListNo(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			PrintWriter out) {
-		int count = ad.count(Sql.USER,Sql.USER_NO_SAY);
+	public void userListNo(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, PrintWriter out) {
+		int count = ad.count(Sql.USER, Sql.USER_NO_SAY);
 		List<UserModel> ul = ad.userListNo((pagenum - 1) * pagesize, pagesize);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
@@ -396,10 +415,9 @@ public class AdminController {
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
-		
+
 	}
-	
-	
+
 	/**
 	 * 获取学生认证信息列表
 	 * 
@@ -422,16 +440,14 @@ public class AdminController {
 		res.put("data", ul.toString());
 		System.out.println(res);
 		out.print(res);
-		
+
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/adminsearch", method = POST)
-	public void adminSearch(@RequestParam(defaultValue = "1") int pagenum, @RequestParam(defaultValue = "5") int pagesize,
-			String kw, PrintWriter out) {
+	public void adminSearch(@RequestParam(defaultValue = "1") int pagenum,
+			@RequestParam(defaultValue = "5") int pagesize, String kw, PrintWriter out) {
 		System.out.println(kw);
-		int count = ad.count(Sql.ADMIN, Sql.ADMIN_LIST_SEATCH_QUERY,  "%" + kw + "%");
+		int count = ad.count(Sql.ADMIN, Sql.ADMIN_LIST_SEATCH_QUERY, "%" + kw + "%");
 		List<AdminModel> pubList = ad.adminSearch((pagenum - 1) * pagesize, pagesize, kw);
 		JSONObject res = new JSONObject();
 		res.put("recordCount", count);
@@ -442,25 +458,23 @@ public class AdminController {
 		System.out.println(res);
 		out.print(res);
 	}
-	
-	@RequestMapping(value = "/pubdel", method = POST)	
-	public void pubDel(int pid, PrintWriter out){
+
+	@RequestMapping(value = "/pubdel", method = POST)
+	public void pubDel(int pid, PrintWriter out) {
 		int r = ad.pubDel(pid);
-		if(r>0){
+		if (r > 0) {
 			out.print("succ");
-		}
-		else {
+		} else {
 			out.print("err");
 		}
 	}
-	
-	@RequestMapping(value = "/admindel", method = POST)	
-	public void adminDel(int mid, PrintWriter out){
+
+	@RequestMapping(value = "/admindel", method = POST)
+	public void adminDel(int mid, PrintWriter out) {
 		int r = ad.adminDel(mid);
-		if(r>0){
+		if (r > 0) {
 			out.print("succ");
-		}
-		else {
+		} else {
 			out.print("err");
 		}
 	}

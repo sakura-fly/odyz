@@ -78,7 +78,8 @@ function loadUserByPage(pageNum){
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/cancelDeleteUser.php',
+                    // url: 'data/cancelDeleteUser.php',
+                    url:"admin/usernm",
                     data: {mname: sessionStorage['loginName'],uname:uname},
                     success: function(obj){
                         alert("解除封号成功");
@@ -93,7 +94,8 @@ function loadUserByPage(pageNum){
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/banUser.php',
+                    // url: 'data/banUser.php',
+                    url:"admin/closesay",
                     data: {mname: sessionStorage['loginName'],uname:uname},
                     success: function(obj){
                         alert("禁止发布成功");

@@ -46,7 +46,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int closeUser(long uid) {
+	public int closeUser(String uid) {
 		int res = -1;
 		try {
 			res = jdbcOp.update(Sql.ADMIN_CLOSEUSER, uid);
@@ -57,7 +57,7 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int closeSay(long uid) {
+	public int closeSay(String uid) {
 		int res = -1;
 		try {
 			res = jdbcOp.update(Sql.ADMIN_CLOSESAY, uid);
@@ -298,6 +298,17 @@ public class AdminDaoImpl implements AdminDao {
 			e.printStackTrace();
 		}
 
+		return res;
+	}
+
+	@Override
+	public int userNm(String uname) {
+		int res = -1;
+		try {
+			res = jdbcOp.update(Sql.ADMIN_USER_NM, uname);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return res;
 	}
 
