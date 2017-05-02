@@ -265,7 +265,8 @@ public class AdminDaoImpl implements AdminDao {
 	public List<AdminModel> adminSearch(int skip, int limit, String kw) {
 		List<AdminModel> res = new ArrayList<>();
 		try {
-			res = jdbcOp.query(Sql.ADMIN_LIST_SEATCH, new Object[] { "%" + kw + "%", skip, limit }, new AdminRowMapper());
+			res = jdbcOp.query(Sql.ADMIN_LIST_SEATCH, new Object[] { "%" + kw + "%", skip, limit },
+					new AdminRowMapper());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -275,14 +276,28 @@ public class AdminDaoImpl implements AdminDao {
 	@Override
 	public int pubDel(int id) {
 		int res = 1;
-		
+
 		try {
 			res = jdbcOp.update(Sql.PUB_DEL_BY_PID, id);
 		} catch (DataAccessException e) {
 			res = -1;
 			e.printStackTrace();
 		}
-		
+
+		return res;
+	}
+
+	@Override
+	public int adminDel(int id) {
+		int res = 1;
+
+		try {
+			res = jdbcOp.update(Sql.ADMIN_DEL_BY_PID, id);
+		} catch (DataAccessException e) {
+			res = -1;
+			e.printStackTrace();
+		}
+
 		return res;
 	}
 

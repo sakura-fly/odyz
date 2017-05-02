@@ -453,5 +453,16 @@ public class AdminController {
 			out.print("err");
 		}
 	}
+	
+	@RequestMapping(value = "/admindel", method = POST)	
+	public void adminDel(int mid, PrintWriter out){
+		int r = ad.adminDel(mid);
+		if(r>0){
+			out.print("succ");
+		}
+		else {
+			out.print("err");
+		}
+	}
 
 }

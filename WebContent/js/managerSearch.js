@@ -60,7 +60,8 @@ function searchLoad(pageNum,kw){
                 //发起异步请求
                 $.ajax({
                     type: 'POST',
-                    url: 'data/deleteManager.php',
+                    // url: 'data/deleteManager.php',
+                    url:"admin/admindel",
                     data: {mname: sessionStorage['loginName'],mid:mid},
                     success: function(obj){
                         alert("删除成功");

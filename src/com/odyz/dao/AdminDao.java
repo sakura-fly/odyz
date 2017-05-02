@@ -152,5 +152,9 @@ public interface AdminDao {
 	
 	
 	public int pubDel(int id);
+	
+	public int adminDel(int id);
+	
+	
 
 }

@@ -41,6 +41,7 @@ public class Sql {
 //
 	
 	public static final String PUB_DEL_BY_PID = "DELETE FROM pub where pid=?";
+	public static final String ADMIN_DEL_BY_PID = "DELETE FROM manager where mid=?";
 	
 //	
 //	//不同的等级
